@@ -48,11 +48,15 @@ input[type="text"] {
     flex-grow: 1;
 }
 
-button {
+/* button {
     font-size: 1.5rem;
-    background-color: #FFFFFF;
+    background-color: #f5f1f1;
     border: none;
     color: #526375;
+} */
+
+#all, #active, #completed{
+    float: right;
 }
 
 button:hover {
@@ -73,7 +77,9 @@ ul {
 }
 
 li {
-    display: flex;
+    /* display: flex; */
+    /* Either choose flex or float; Flex is its own thing.
+        Wouldn't use width, height, or percentage with flex.*/
     align-items: center;
     border-bottom: 1px solid lightgreen;
     padding: 15px 0;
@@ -85,9 +91,9 @@ i {
     pointer-events: none;
 }
 
-.todo-item {
+/* .todo-item {
     flex-grow: 1;
-}
+} */
 
 .clearAll {
     display: flex;
@@ -101,3 +107,19 @@ i {
     color: lightseagreen;
 }
 
+#checkButton {
+    float: left;
+}
+
+.deleteButton {
+    float: right;
+}
+
+/* for hi-lite*/
+.active {
+    background-color: green;
+}
+
+.target:hover {
+    background-color: blue;
+}
