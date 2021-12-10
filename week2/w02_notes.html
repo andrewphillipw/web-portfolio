@@ -1,21 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebPortfolio</title>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPortfolio</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
     <h1>Web Portfolio</h1>
-    <h2>Notes</h2>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
+    <h2>Week 02 Notes</h2>
+    <h3>I. Arguments vs Parameters</h3>
+    <p>function foo(param1, param2) { <br>
+        // do something <br>
+        }<br>
+        foo(10, 20);<br>
+        <br>
+        arguments are 10 & 20, while parameters are param1 & param2<br></p>
+    <h3>II. Spread Operator: ... </h3>
+    <p>var myArray = [5, 10, 50]; <br>
+        Math.max(myArray);    // Error: NaN <br>
+        Math.max.apply(Math, myArray);    // 50 <br>
+        <br>
+        apply() allows max to handle arrays</p>
+    <h3>III. Rest Parameters: turns parameters into an array</h3>
+    <p>function myFunction(...options) { <br>
+        return options; <br>
+    }
+        myFunction('a', 'b', 'c');      // ["a", "b", "c"]<br>
+        <br>
+    A rest parameter should be used with variadic functions
+    (varying num of args). <br>
+        <br>
+    function checkSubstrings(string, ...keys) { <br>
+    <span class="tab"></span>for (var key of keys) { <br>
+        <span class="tab"></span><span class="tab"></span>if (string.indexOf(key) === -1) { <br>
+        <span class="tab"></span><span class="tab"></span><span class="tab"></span>return false; <br>
+        <span class="tab"></span><span class="tab"></span>} <br>
+        <span class="tab"></span>} <br>
+        <span class="tab"></span>return true; <br>
+    } <br>
+    checkSubstrings('this is a string', 'is', 'this');   // true <br>
+    <br>
+    However, the rest parameter needs to be the last one and
+    no more than two rest <br> parameters per functions. <br></p>
+    <h3>IV. Destructuring</h3>
+    <p>Extract values from arrays & objects assigning them to variables. <br>
+        <br>
+    function initiateTransfer({protocol, port, delay, retries, timeout, log}) {<br>
+            // code to initiate transfer <br>
+    }; <br>
+    var options = { <br>
+        protocol: 'http', <br>
+        port: 800, <br>
+        delay: 150, <br>
+        retries: 10, <br>
+        timeout: 500, <br>
+        log: true <br>
+    }
+        initiateTransfer(options); <br>
+    <br>
+
+    This makes it easier to see what is going on;
+        you can look at the value<br> of each variable.<br>
+    </p>
+    <h3>CORE CONCEPTS OR BUILDING BLOCKS</h3>
+    <h3>1) Functions -</h3>
+    <p>a block of code that can be referenced by name (mini-program). <br>
+    Most functions will return some sort of variable (int, string, array). <br>
+    a) declaration <br>
+        <br>
+    function hello(){ <br>
+    <span class="tab"></span>console.log('Hello World!');<br>
+    }<br>
+        <br>
+    b) constructor <br>
+        <br>
+    const hi = new Function('Hello World!'); <br>
+        <br>
+    c) invoking a function <br>
+        <br>
+    hello(); <br>
+    //you can pass arguments too <br>
+    add(2, 3); <br> </p>
+    <br>
+    <h3>2) Loops -</h3>
+    <p>a) while loop - used when num of iterations uncertain <br>
+    <br>
+    let n = 1; <br>
+        <br>
+    while(n>0){ <br>
+        <span class="tab"></span>console.log('Hello'); <br>
+        <span class="tab"></span>n++; <br>
+    } <br>
+    <br>
+    b) do-while - will run at least once with an uncertain num of iterations <br>
+        <br>
+    let r = 0; <br>
+    let win = false; <br>
+    do { <br>
+        <span class="tab"></span>console.log('Round '+toString(r)); <br>
+        <span class="tab"></span>if(match_won()){ <br>
+        <span class="tab"></span><span class="tab"></span>win = true; <br>
+        <span class="tab"></span><span class="tab"></span>console.log('Advance to the next round!'); <br>
+        <span class="tab"></span>}else{ <br>
+        <span class="tab"></span><span class="tab"></span>win = false; <br>
+        <span class="tab"></span><span class="tab"></span>console.log('Better odds next time.'); <br>
+        <span class="tab"></span>} <br>
+    } while(win); <br>
+    <br>
+    c) for loop - will run a specific number of times <br>
+        <br>
+    //nested for loop to make a times table <br>
+    for(let i=1 ; i<13 ; i++){ <br>
+    <span class="tab"></span>for(let j=1 ; j<13 ; j++){ <br>
+        <span class="tab"><span class="tab"></span></span>console.log(`${j} multiplied by ${i} is ${i*j}`);
+    <span class="tab"></span>} <br>
+    } <br>
+    <br>
+    d) infinite loop - when conditional statement never reached; memory leak <br>
+        <br>
+    //often done by mistake <br>
+    let count = 0; <br>
+    while (count < 10) <br>
+    { <br>
+    <span class="tab"></span>console.log('Apples, Oranges, Pumpkin Pie'); <br>
+    } <br>
+    //it needs a count++ <br> </p>
+    <h3>3) Logic -</h3>
+    <p> a) if statements <br>
+        <br>
+    if (landOwner) { <br>
+    <span class="tab"></span>can_vote = true; <br>
+    <span class="tab"></span>hold_office = true; <br>
+        } <br>
+        <br>
+    b) else and if-else statements <br>
+        <br>
+    else if (merchant) { <br>
+    <span class="tab"></span>can_vote = true; <br>
+    <span class="tab"></span>hold_office = false; <br>
+    } <br>
+    else <br>
+    { <br>
+    <span class="tab"></span>can_vote = false; <br>
+    } <br>
+        <br>
+
+    c) ternary operator (short-hand) <br>
+        <br>
+    (num % 2 == 0) ? return 'even' : return 'odd'; <br> </p>
+    <br>
+    <h3>4) Arrays - </h3>
+    <p>zero-indexed like a bookshelf you can place multiple books. <br>
+        Another way to think of it is a calendar. There's usually 30 days but <br>
+        each of these days may have a no events or a lot of events. <br> <br>
+    a) conventional array - an ordered list of values <br>
+    const myArray = new Array(); <br>
+    <br>
+    const avengers = ['Captain America', 'Iron Man', 'Thor', 'Hulk']; <br>
+    <br>
+    avengers.length; <br>
+    avengers[avengers.length - 1]; <br>
+    avengers.pop(); <br>
+    avengers.push('Hawkeye'); <br>
+    avengers.shift(); <br>
+    avengers.unshift('Captain America'); <br>
+    avengers.join(' & '); <br>
+    avengers.splice(3, 1, 'Black Widow'); <br>
+    avengers.reverse(); <br>
+    avengers.sort(); <br>
+        <br>
+    'Black Widow', 'Captain America', 'Hawkeye', 'Hulk', 'Iron Man', 'Thor'<br>
+    <br>
+    b) Set - way of keeping a list of key and value pairs, and are similar to <br>
+    “hashes”, or“hash tables” or “dictionaries” in other programming languages. <br>
+    Main advantage is fast-searching compared to other data structures.<br>
+    <br>
+    const list = new Set(); <br>
+    list.add(2).add(3).add(4);<br>
+    list.delete(4); <br>
+    list.size(); <br>
+    <br>
+    c) Map - way of keeping a list of key and value pairs, and are similar to <br>
+    “hashes”, or“hash tables” or “dictionaries” in other programming languages. <br>
+    <br>
+    const romanNumerals = new Map(); <br>
+    romanNumerals.set(1,'I'); <br>
+    romanNumerals.set(2,'II').set(3,'III').set(4,'IV').set(5,'V'); <br>
+    romanNumerals.has(5); <br>
+    romanNumerals.delete('IV'); <br>
+    romanNumerals.clear(); <br>
+    <br>
+    d) memory leak - occurs when a program retains references to values that can no <br>
+    longer be accessed in its memory. This means that memory is being used to store <br>
+    values that are no longer required by the program, effectively wasting system <br>
+    resources. <br> </p>
+    <br>
 </body>
 </html>

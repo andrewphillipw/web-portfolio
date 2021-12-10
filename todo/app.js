@@ -1,3 +1,4 @@
+//@author Andrew Wright Oct 2021
 //this is equivalent to ToDo.js
 //for hi-liting selected button
 let btns = document.getElementsByClassName('target');

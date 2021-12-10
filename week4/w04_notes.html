@@ -4,18 +4,315 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebPortfolio</title>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
     <h1>Web Portfolio</h1>
-    <h2>Notes</h2>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
+    <h2>Week 04 Notes</h2>
+    <h3>Forms</h3>
+    <p>Made from the &lt;form&gt; element, and they contain input fields, <br> menus, or buttons. <br>
+    Before info was processed with PHP but now more is processed with <br> Java script. <br>
+    <br>
+    &lt;!doctype html&gt; <br>
+    &lt;html lang='en'&gt; <br>
+    &lt;head&gt; <br>
+        <span class="tab"></span>&lt;meta charset='utf-8'&gt; <br>
+        <span class="tab"></span>&lt;title&gt;Search&lt;/title&gt; <br>
+    &lt;/head&gt; <br>
+    &lt;body&gt; <br>
+        <span class="tab"></span>&lt;form name='search' action='/search'&gt; <br>
+        <span class="tab"></span>&lt;input name='searchInput'&gt; <br>
+        <span class="tab"></span>&lt;button type='submit'&gt;Search</button&gt; <br>
+        <span class="tab"></span>&lt;/form&gt; <br>
+        <span class="tab"></span>&lt;script src='main.js'&gt;&lt;/script&gt; <br>
+    &lt;/body&gt; <br>
+    &lt;/html&gt; <br>
+    </p>
+    <h3>Acessing Forms</h3>
+    <p>const form = document.forms[0]; <br>
+        <br>
+        const form = document.getElementsByTagname('form')[0]; <br>
+        <br>
+        const form = document.forms.search; <br>
+        Use caution when using this method, because there can <br>
+        be name conflicts between form names and its methods. <br>
+        <br>
+        const form = document.forms['search']; <br>
+        <br>
+        <b>Form Methods, Properties, & Events </b>
+        <br>
+        form.submit() <br>
+        <br>
+        form.reset() <br>
+        <br>
+        form.action = '/an/other.url' <br>
+        <br>
+        input.addEventListener('focus', function(){ <br>
+            if (input.value==='Search Here') { <br>
+            <span class="tab"></span>input.value = '' <br>
+            <span class="tab"></span>} <br>
+        }, false); <br>
+        <br>
+        input.addEventListener('blur', function(){ <br>
+            if(input.value === '') { <br>
+            <span class="tab"></span>input.value = 'Search Here'; <br>
+            <span class="tab"></span>} <br>
+            }, false); <br>
+        <br>
+        &lt;b&gt;Placeholder Attribute&lt;/b&gt; (shows if form is empty) <br>
+        &lt;input type='text' name='search-box' placeholder='Search Here'&gt; <br> </p>
+    <h3>Form Validation</h3>
+    <p>
+        As important as good layout, form validation is the process of <br>
+        ensuring correct info is entered: required & valid. These<br>
+        are done by adding certain attributes, for example 'required'. <br>
+        <br>
+        &lt;input type='text' id='heroName' name='heroName' autofocus <br>
+        placeholder='Your Super Hero Name' maxlength=32 required&gt;
+        <br>
+        form.addEventListener('submit',validate,false); <br>
+        <br>
+        function validate(event) { <br>
+            const firstLetter = form.heroName.value[0]; <br>
+            if (firstLetter.toUpperCase() === 'X') { <br>
+            <span class="tab"></span>event.preventDefault(); <br>
+            <span class="tab"></span>alert('Your name is not allowed to start with  X!');<br>
+            }<br>
+        }<br>
+    </p>
+    <h3>OOP (Object-Oriented Programming)</h3>
+    <p>
+        Code is divided into objects with variables and methods.<br>
+        Here are some of the processes being used: constructors, classes, <br> prototypes, public & private methods, inheritance, <br>
+        chaining functions, borrowing prototype methods, and the keywords this & that. <br>
+        <br>
+        <b>3 Main Concepts of OOP</b> <br>
+        <ol>
+        <li>Encapsulation - user does not need to know how 'on' button <br> works within a device</li>
+        <li>Polymorphism - an 'on' button can be mostly the same <br> between devices </li>>
+        <li>Inheritance - add new features to an exisitng object (device) </li> <br>
+        </ol>
+        <b>Constructor Functions</b> <br>
+        <br>
+        const Dice = function(sides=6){ <br>
+            <span class="tab"></span>this.sides = sides; <br>
+            <span class="tab"></span>this.roll = function() { <br>
+            <span class="tab"></span>return Math.floor(this.sides * Math.random() + 1)
+            } <br>
+        } <br>
+        <br>
+        const literalObject = {}; <br>
+        tructedObject = new Object(); <br>
+        <br>
+        class Dice { <br>
+            <span class="tab"></span>constructor(sides=6) { <br>
+            <span class="tab"></span>this.sides = sides; <br>
+            <span class="tab"></span>} <br>
+            <br>
+            <span class="tab"></span>roll() { <br>
+            <span class="tab"></span>return Math.floor(this.sides * Math.random() + 1); <br>
+            <span class="tab"></span>} <br>
+        } <br>
+    </p>
+    <h3>Mixin Functionality</h3>
+    <p>
+        Sometimes with modularization objects might need to work with more <br> harmony;
+        an inheritance chain is too cumbersome so a mixin object <br> is created. <br>
+        <br>
+        Example: gun w/ person = soldier, gun w/ vehicle = tank <br>
+        <br>
+        const flight = { <br>
+            <span class="tab"></span>fly() { <br>
+            <span class="tab"></span>console.log(`Up, up and away! ${this.name} soars through <br> the air!`); <br>
+            <span class="tab"></span>return this; <br>
+            <span class="tab"></span>} <br>
+        } <br>
+        <br>
+        const superSpeed = { <br>
+            <span class="tab"></span>move() { <br>
+            <span class="tab"></span>console.log(`${this.name} can move faster than a speeding <br> bullet!`); <br>
+            <span class="tab"></span>return this; <br>
+            <span class="tab"></span>} <br>
+        } <br>
+        <br>
+        const xRayVision = { <br>
+            <span class="tab"></span>xray() { <br>
+            <span class="tab"></span>console.log(`${this.name} can see right through you!`); <br>
+            <span class="tab"></span>return this; <br>
+            <span class="tab"></span>} <br>
+        } <br>
+        <br>
+        <b>This Keyword</b> <br>
+        <br>
+        Value of this points to the object calling a method. <br>
+        <br>
+        superman.findFriends = function(){ <br>
+            <span class="tab"></span>const that = this; <br>
+            <span class="tab"></span>this.friends.forEach(function(friend) { <br>
+            <span class="tab"></span>console.log(`${friend.name} is friends with <br> ${that.name}`); <br>
+            <span class="tab"></span>} <br>
+            <span class="tab"></span>); <br>
+        } <br>
+        <br>
+        superman.findFriends(); <br>
+        <<  Batman is friends with Superman <br>
+            Wonder Woman is friends with Superman <br>
+            Aquaman is friends with Superman <br>
+        <br>
+        ask(name){ <br>
+            console.log('ask() invoked'); <br>
+            if(this.questions.length > 2) { <br>
+            <span class="tab"></span>shuffle(this.questions); <br>
+            <span class="tab"></span>this.question = this.questions.pop(); <br>
+            <span class="tab"></span>const options = [this.questions[0].realName, <br> this.questions[1].realName, <span class="tab"></span>this.question.realName]; <br>
+            <span class="tab"></span>shuffle(options); <br>
+            <span class="tab"></span>const question = `What is ${this.question.name}'s real name?`; <br>
+            <span class="tab"></span>view.render(view.question,question); <br>
+            <span class="tab"></span>view.render(view.response,view.buttons(options)); <br>
+            }<br>
+            else {<br>
+            <span class="tab"></span>this.gameOver();<br>
+            }<br>
+        }<br>
+    <br>
+    </p>
+    <h3>Modern Java script Development</h3>
+    <p>Eventually programs I work on will be 1,000's of lines or even <br> 10,000 lines, so I'll need to
+    organize the code properly. These <br> inlcude Libraries, Modular JavaScript, MVC frameworks, and <br> package managers. <br>
+        <br>
+        <b>Libraries</b> - external methods used to run <br> specific tasks. <br>
+        <br>
+        para.classList.add('important'); <br>
+        const newPara = document.createElement('p'); <br>
+        newPara.textContent = 'Another Paragraph'; <br>
+        para.appendChild(newPara); <br>
+        <br>
+        Underscore & Lodash - small functions that provide features. <br>
+        <br>
+        Library Usage - sometime it's not worth setup time for <br>
+        installing and keeping a librray. <br>
+        <br>
+        <b>Model View Controller (MVC) Framework</b> -
+        Models - objects that aim <br> for much reading, updating and deleting (known as <br> CRUD tasks), stored on database <br>
+        <br>
+        Viewsprovide - visual representation of the model showing info. <br>
+        Controllers - linking models and views together by communicating with the user. <br>
+        <br>
+    </p>
+    <p>
+        const controller = { <br>
+            watch(form) { <br>
+                <span class="tab"></span>form.addEventListener('submit', (event) => { <br>
+                <span class="tab"></span>event.preventDefault(); // prevent the form from being submitted <br>
+                <span class="tab"></span>this.add(form.name.value); <br>
+                <span class="tab"></span>}, false); <br>
+            }, <br>
+            <br>
+            add(name) { <br>
+                <span class="tab"></span>const item = new Item(name); <br>
+                <span class="tab"></span>view.render(item); <br>
+            } <br>
+        }; <br>
+        <br>
+        const square = require('./squareFunction'); <br>
+        DOM Model Code <br>
+        function square(x) { <br>
+            <span class="tab"></span>return x * x; <br>
+        } <br>
+        <br>
+        function sum(array, callback) { <br>
+            if(callback) { <br>
+            <span class="tab"></span> array = array.map(callback); <br>
+            } <br>
+            return array.reduce((a,b) => a + b ); <br>
+        } <br>
+        <br>
+        function variance(array) { <br>
+            return sum(array,square)/array.length - square(mean(array)) <br>
+        } <br>
+        <br>
+        function mean(array) { <br>
+            return sum(array) / array.length; <br>
+        } <br>
+        <br>
+        export { <br>
+            variance, <br>
+            mean <br>
+        } <br>
+        <br>
+        <br>
+        &lt;!doctype html&gt; <br>
+        <br>
+        &lt;style&gt;body { min-height: 200px }&lt;/style&gt; <br>
+        &lt;img src="img/cat.png" id="cat" style="position: absolute"&gt; <br>
+        &lt;img src="img/hat.png" id="hat" style="position: absolute"&gt; <br>
+        <br>
+        module.exports = x =&gt;  x * x; <br>
+        <br>
+        &lt;script&gt; <br>
+        let cat = document.querySelector("#cat"); <br>
+        let hat = document.querySelector("#hat"); <br>
+        <br>
+        <br>
+        function square(x) { <br>
+            return x * x; <br>
+        } <br>
+        <br>
+        function sum(array, callback) { <br>
+            if(callback) { <br>
+            <span class="tab">array = array.map(callback); <br>
+            } <br>
+            return array.reduce((a,b) => a + b ); <br>
+        } <br>
+        <br>
+        function variance(array) { <br>
+            return sum(array,square)/array.length - square(mean(array)) <br>
+        } <br>
+        <br>
+        function mean(array) { <br>
+            return sum(array) / array.length; <br>
+        } <br>
+        <br>
+        export { <br>
+            variance, <br>
+            mean <br>
+        } <br>
+        <br>
+        let angle = 0; <br>
+        let lastTime = null; <br>
+        function animate(time) { <br>
+            if (lastTime != null) angle += (time - lastTime) * 0.001; <br>
+            <span class="tab"></span>lastTime = time; <br>
+            cat.style.top = (Math.sin(angle) * 40 + 40) + "px"; <br>
+            cat.style.left = (Math.cos(angle) * 200 + 230) + "px"; <br>
+            <br>
+            requestAnimationFrame(animate); <br>
+        } <br>
+        requestAnimationFrame(animate); <br>
+        &lt;/script&gt; <br>
+        <br>
+        function square(x) { <br>
+            return x * x; <br>
+        } <br>
+        <br>
+        function sum(array, callback) { <br>
+            if(callback) { <br>
+            <span class="tab"></span>array = array.map(callback); <br>
+            } <br>
+            return array.reduce((a,b) => a + b ); <br>
+        } <br>
+        <br>
+        function variance(array) { <br>
+            return sum(array,square)/array.length - square(mean(array)) <br>
+        } <br>
+        <br>
+        function mean(array) { <br>
+            return sum(array) / array.length; <br>
+        } <br>
+        <br>
+        export { <br>
+            variance, <br>
+            mean <br>
+    }</p>
 </body>
 </html>

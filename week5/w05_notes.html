@@ -4,18 +4,253 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebPortfolio</title>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
+    <span class="tab"></span>
     <h1>Web Portfolio</h1>
-    <h2>Notes</h2>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
+    <h2>Week 05 Notes - Testing and Debugging</h2>
+    <h3>ERRORS, EXCEPTIONS, & WARNINGS</h3>
+        <p>
+            Errors, or more commonly referred to as bugs, are a common <br>
+            occurence in the life of a software developer. These are <br>
+            easily one of the more difficult aspects of design, taking <br>
+            several minutes or a couple hours to solve. <br>
+            <br>
+            They are usually one of the following: <br>
+            <ol>
+            <li>system error - system or devices have problems</li>
+            <li>programmer error - bad syntax or faulty logic (typos) </li>
+            <li>user error - bad data entry so program crashes</li>
+            </ol>
+            <br>
+            Be aware that system errors can arise, by minimizing their <br>
+            affects (modular design); a program can still be used offline. <br>
+            Typos and syntax errors should be fixed promptly. Then for <br>
+            user errors the program ought to be user-friendly: having required <br>
+            tags in html forms or being specific about what data type is <br>
+            required '5' (int) instead of 'five' by using conditionals and <br>
+            program feedback (dialogue).<br>
+            <br>
+            In addition, to conditionals to filter input, exceptions are a great <br>
+            way to address bugs in a program. Similar to if statements such <br>
+            conditionals are a way to notify the user or the developer where the <br>
+            program is breaking or if something is missing.<br>
+            <br>
+        </p>
+        <p>
+            <b>Exception examples</b> <br>
+            <br>
+            unicorn(); <br>
+            << ReferenceError: unicorn is not defined <br>
+            <br>
+            hungry();<br>
+            << Error: not enough food is here <br>
+            <br>
+            add(five, 5); <br>
+            << Error: 'five' is not a valid int! <br>
+            <br>
+            Stack traces are sequences of method calls that lead to <br>
+            where the error occured. <br>
+            <br>
+            <b>Stack Traces examples</b> <br>
+            <br>
+            << index.html:13 Uncaught ReferenceError: <br> unicorn is not defined <br>
+                at three (index.html:13 )<br>
+                at two (index.html:17) <br>
+                at one (index.html:21) <br>
+                at index.html:24 <br>
+            <br>
+            Warnings show up when there's an error that is not enough to <br>
+            crash the program (minor error). Depending on the environment <br>
+            the warnings can be different: either small icons or messages <br>
+            in the console. <br>
+            <br>
+            <b>Warning example</b> <br>
+            <br>
+            pi = 3.142; <br>
+            << JavaScript Warning: assignment to undeclared variable <br>
+            <br>
+        </p>
+    <h3>WHY DEBUGGING IS IMPORTANT</h3>
+        <p>
+            Javascript is a forgiving language, so it'll often fail
+            silently in the background (instead of crashing right away).
+            This also makes errors longer to track down and more difficult
+            to spot when things do go wrong. Rigorous testing required.
+        </p>
+    <h3>STRICT MODE</h3>
+        <p>
+            This mode no longer tolerates coding practices that were once
+            considered as 'poor style'. This actually improves the speed
+            and clarity of how code is written.
+        </p>
+        <p>
+            Strict mode example
+            'use strict';
+
+            e = 2.718;
+            << ReferenceError: e is not defined
+        </p>
+    <h3>LINTING TOOLS</h3>
+        <p>
+            JS Lint,JS Hint, and ES Lint can be used to test the quality of JavaScript code.
+            These will complain if certain programming styling conventions are not followed
+            (indentation, arithmetic operators). They can help with enforcing or following
+            a programming style guide. These are either text-editor plugins or online.
+        </p>
+    <h3>DEBUGGING TOOLS</h3>
+        <p>
+            These can be used when debugging: alert(), console.log(), & debugger.
+            !! Remember to remove any references to 'debugger' command before shipping any code.
+
+            I) alert() method - to show a dialog in browser at certain points in the code
+
+            function amIOldEnough(age){
+                if (age = 12) {
+                    alert(age);
+                    return 'No, sorry.';
+                } else if (age < 18) {
+                    return 'Only if you are accompanied by an adult.';
+                }
+                else {
+                    return 'Yep, come on in!';
+                }
+            }
+
+            II) console.log() example
+
+            function amIOldEnough(age){
+                console.log(age);
+                    if (age < 12) {
+                    <span class="tab"></span>console.log(`In the if with ${age}`);
+                    <span class="tab"></span>return 'No, sorry.';
+                    } else if (age < 18) {
+                    console.log(`In the else-if with ${age}`);
+                    return 'Only if you are accompanied by an adult.';
+                    } else {
+                    console.log(`In the else with ${age}`);
+                    return 'Yep, come on in!';
+                }
+            }
+
+            III) 'debugger' example
+
+            function amIOldEnough(age){
+                debugger;
+                    if (age < 12) {
+                    debugger;
+                    return 'No, sorry.';
+                    } else if (age < 18) {
+                    debugger;
+                    return 'Only if you are accompanied by an adult.';
+                    } else {
+                    debugger;
+                    return 'Yep, come on in!';
+                }
+            }
+
+            amIOldEnough(16);
+        </p>
+    <h3>ERROR OBJECTS</h3>
+        <p>
+            An object can be created in the host-environment.
+
+            const error = new Error('Oops, something went wrong');
+
+            It has the following properties: name (name of error), message (description
+            of the error, & stack (stack trace of error).
+
+            More error objects: EvalError (uses eval()), RangeError, ReferenceError,
+            SyntaxError, TypeError, URIError, and InternalError.
+        </p>
+    <h3>THROWING EXCEPTIONS</h3>
+        <p>
+            You can throw your own error messages.
+
+            The throw statement can be applied to any JavaScript expression, causing the
+            execution of the program to stop, or halt, immediately
+
+            Example of throwing an error message:
+
+            throw 2;
+            throw 'Up';
+            throw { toys: 'out of pram' };
+
+            Example throwing an error object (better practice):
+
+            throw new Error('Something has gone badly wrong!');
+        </p>
+    <h3>HANDLING EXCEPTIONS</h3>
+        <p>
+            Errors can be caught, producing smoother exception handling.
+            This is done by using: try,catch, and finally.
+
+            function imaginarySquareRoot(number) {
+                'use strict';
+                let answer;
+                try {
+                    answer = String(squareRoot(number));
+                } catch(error) {
+                    answer = squareRoot(-number)+"i";
+                } finally {
+                    return `+ or - ${answer}`;
+                }
+            }
+        </p>
+    <h3>TEST-DRIVEN DEVELOPMENT</h3>
+        <p>
+            Test-driven development(TDD) is the process of writing tests before any actual code.
+            Below there are quite a few steps, ideally you'd run many tests. However, if you
+            only can write one or two tests, that's better than no tests. It is also important
+            to note that TDD be too cumbersome or even can hurt program designs (Hansson).
+
+            Here's its workflow:
+
+            1) Write tests (that initially fail)
+
+            2) Write code to pass the tests
+
+            3) Refactor the code
+
+            4) Test refactored code
+
+            5) Write more tests for new features
+
+            Jest is a TDD framework created by Facebook
+
+            Install via the terminal:
+            npm install -g jest
+
+            Verify the installation:
+            jest -v
+            << v19.0.2
+
+            Write a test for your function:
+            function squareRoot(number) {
+                'use strict';
+                if (number < 0) {
+                    throw new RangeError("You can't find the square root of negative numbers")
+                }
+                return Math.sqrt(number);
+            };
+
+            test('square root of 4 is 2', () => {
+            expect(squareRoot(4)).toBe(2);
+            });
+
+            Navigate to the folder that has filesquareRoot.test.js & run this command:
+            jest -c {}
+
+            See the Results:
+            << PASS  ./squareRoot.test.js
+            ✓ square root of 4 is 2 (2ms)
+
+            Test Suites: 1 passed, 1 total
+            Tests:       1 passed, 1 total
+            Snapshots:   0 total
+            Time:        2.996s
+
+        </p>
 </body>
 </html>

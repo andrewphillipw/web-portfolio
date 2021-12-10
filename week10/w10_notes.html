@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPortfolio</title>
+  <link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+<body>
+    <h1>Web Portfolio</h1>
+    <h2>Week 10 Notes</h2>
+    <p>Nov 20, 2021</p> <br>
+    <h3>CLIENT-SIDE FORM VALIDATION</h3>
+    <p>
+      client-side form validation - the process of ensuring all <br> required form controls are filled out, in the correct format, before <br> submitting data to the server.<br>
+      <br>
+      <b>Three main reasons for this:</b>
+    </p>
+    <ol>
+        <li>We want to get the right data, in the right format. Our <br> applications won't work properly if our users' data is stored in <br> the wrong format, is incorrect, or is omitted altogether. <br> </li>
+        <li> We want to protect our users' data. Forcing our users to <br> enter secure passwords makes it easier to protect their account <br> information. <br></li>
+        <li>We want to protect ourselves. There are many ways that <br> malicious users can misuse unprotected forms to damage the <br> application (see Website security). <br> </li>
+    </ol>
+    <br>
+    <p>
+      <b>Validating against a regular expression</b> <br>
+      <br>
+      Regexps are quite complex, and we don't intend to teach you them <br> exhaustively in this article. Below are some examples to give <br> you a basic idea of how they work. <br>
+        <br>
+        a — Matches one character that is a (not b, not aa, and so on). <br>
+        abc — Matches a, followed by b, followed by c. <br>
+        ab?c—Matches a, optionally followed by a single b, followed <br> by c. ( ac or abc) <br>      <br>
+        ab*c—Matches a, optionally followed by any number of bs, <br> followed by c. ( ac , abc, abbbbbc, and so on). <br>
+        a|b — Matches one character that is a or b. <br>
+        abc|xyz — Matches exactly abc or exactly xyz (but not abcxyz or <br> a or y, and so on). <br>
+      <br>
+      What kind of validation should I perform?<br>
+      <br>
+      What should I do if the form doesn't validate?<br>
+      <br>
+    </p>
+    <br>
+    <h3>USING FETCH</h3>
+    <p> The Fetch API provides a JavaScript interface for accessing and <br> manipulating parts of the HTTP pipeline, such as requests and <br> responses. Fetch is a better alternative than XMLHttpRequest. <br> 
+    <br>
+    Basic fetch request:<br>
+    <br>
+    fetch('http://example.com/movies.json') <br>
+      .then(response => response.json()) <br>
+      .then(data => console.log(data)); <br>
+    </p>
+    <br>
+    <p>
+      <b>I. Supplying request options</b> <br>
+      <br>
+      // Example POST method implementation: <br>
+      async function postData(url = '', data = {}) { <br>
+        // Default options are marked with * <br>
+        const response = await fetch(url, { <br>
+          method: 'POST', // *GET, POST, PUT, DELETE, etc. <br>
+          mode: 'cors', // no-cors, *cors, same-origin <br>
+          cache: 'no-cache', // *default, no-cache, reload, force- <br> cache, only-if-cached <br>
+          credentials: 'same-origin', // include, *same-origin, omit <br> 
+          headers: { <br>
+            'Content-Type': 'application/json' <br>
+            // 'Content-Type': 'application/x-www-form-urlencoded', <br>
+          }, <br>
+          redirect: 'follow', // manual, *follow, error <br>
+          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-<br>when-downgrade, origin, origin-when-cross-origin, same-<br>origin, strict-origin, strict-origin-when-cross-origin, <br> unsafe-url
+          body: JSON.stringify(data) // body data type must match <br> "Content-Type" header <br>
+        }); <br> 
+        return response.json(); // parses JSON response into native <br> JavaScript objects <br>
+      } <br>
+      <br>
+      postData('https://example.com/answer', { answer: 42 }) <br>
+        .then(data => { <br>
+          console.log(data); // JSON data parsed by `data.json()` call <br>
+        });<br>
+    <br>
+    </p>
+    <p><b>II. Sending a request with credentials included</b> <br>
+      <br>
+      fetch('https://example.com', { <br>
+        credentials: 'include' <br>
+      }); <br>
+      <br>
+    </p>
+    <p><b>III. Uploading JSON Data</b> <br>
+      <br>
+        const data = { username: 'example' }; <br>
+        <br>
+        fetch('https://example.com/profile', { <br>
+          method: 'POST', // or 'PUT' <br>
+          headers: { <br>
+            'Content-Type': 'application/json', <br>
+          }, <br>
+          body: JSON.stringify(data), <br>
+        }) <br>
+        .then(response => response.json()) <br>
+        .then(data => { <br>
+          console.log('Success:', data); <br>
+        }) <br>
+        .catch((error) => { <br>
+          console.error('Error:', error); <br>
+        }); <br>
+      <br>
+    </p>
+    <p><b>IV. Uploading a file</b> <br>
+      <br>
+      const formData = new FormData(); <br>
+      const fileField = <br><br>document.querySelector('input[type="file"]'); <br>
+      <br>
+      formData.append('username', 'abc123'); <br>
+      formData.append('avatar', fileField.files[0]); <br>
+      <br>
+      fetch('https://example.com/profile/avatar', { <br>
+        method: 'PUT', <br>
+        body: formData <br>
+      }) <br>
+      .then(response => response.json()) <br>
+      .then(result => { <br>
+        console.log('Success:', result); <br>
+      }) <br>
+      .catch(error => { <br>
+        console.error('Error:', error); <br>
+      }); <br>
+      <br>
+    </p>
+    <p><b>V. Response Objects</b> <br>
+      <br>
+      Response instances are returned when fetch() promises are <br> resolved. <br>
+      <br>
+      Most common responses properties: <br>
+      <ol>
+        <li>Response.status — An integer (default value 200) <br> containing the response status code. <br></li>
+        <li>Response.statusText — A string (default value ""), <br> which corresponds to the HTTP status code message. Note <br> that HTTP/2 does not support status messages. <br></li>
+        <li>Response.ok — seen in use above, this is a shorthand for <br> checking that status is in the range 200-299 inclusive. <br> This returns a boolean value. <br></li>
+        <br>
+      </ol>
+      <br>  
+      const myBody = new Blob();<br>
+      <br>
+      addEventListener('fetch', function(event) { <br>
+        // ServiceWorker intercepting a fetch <br>
+        event.respondWith( <br>
+          new Response(myBody, { <br>
+            headers: { 'Content-Type': 'text/plain' } <br>
+          }) <br>
+        ); <br>
+      }); <br>
+    </p>
+    <p><b> VI. Body</b> <br>
+      <br>
+      A body is an instance of any of the following types: <br>
+       -ArrayBuffer <br>
+       -ArrayBufferView (Uint8Array and friends) <br>
+       -Blob/File <br>
+       -string <br>
+       -URLSearchParams <br>
+       -FormData <br>
+      <br>
+      The Request and Response interfaces share the following methods <br> to extract a body. These return a promise that is resolved with <br> the actual content (better usage of non-textual data). <br>
+      <br>
+        -Request.arrayBuffer() / Response.arrayBuffer() <br>
+        -Request.blob() / Response.blob() <br>
+        -Request.formData() / Response.formData() <br>
+        -Request.json() / Response.json() <br>
+        -Request.text() / Response.text() <br>
+    </p>
+</body>
+</html>

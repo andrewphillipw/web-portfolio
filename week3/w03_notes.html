@@ -1,21 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebPortfolio</title>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebPortfolio</title>
+<link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
-    <h1>Web Portfolio</h1>
-    <h2>Notes</h2>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
-    <h3></h3>
-    <p></p>
+<h1>Web Portfolio</h1>
+<h2>Week 03 Notes</h2>
+<h3>Object Method this</h3>
+<p>
+    The value of this is the object “before dot”, the one used to call the method. <br>
+    Keyword 'this' is used for access member variables. <br>
+    <br>
+    let user = { <br>
+    name: "John", <br>
+    age: 30, <br>
+    <br>
+    sayHi() { <br>
+        // "this" is the "current object" <br>
+        alert(this.name); <br>
+    } <br>
+    <br>
+    };<br>
+    <br>
+    user.sayHi(); // John <br>
+</p>
+<h3>Chapter 5 Objects</h3>
+<p>
+    Objects are advanced data types that have properties: values and methods. <br>
+    <br>
+    const spiderman = new Object(); <br>
+    <br>
+    const name = 'Iron Man'; <br>
+    const realName = 'Tony Stark'; <br>
+    <br>
+    // long way <br>
+    const ironMan = { name: name, realName: realName }; <br>
+    <br>
+    // short ES6 way <br>
+    const ironMan = { name, realName }; <br>
+    <br>
+    <b>Calling Methods</b> <br>
+    <br>
+    superman.fly() <br>
+    << 'Up, up and away!' <br>
+    <br>
+    superman['fly']() <br>
+    << 'Up, up and away!' <br>
+    <br>
+    <b>Properties of an Object</b> <br>
+    <br>
+    for(const key in superman) { <br>
+    <span class="tab"></span>console.log(key + ": " + superman[key]); <br>
+    } <br>
+    << "name: Superman" <br>
+    << "real name: Clark Kent" <br>
+    << "height: 75" <br>
+    << "weight: 235"<br>
+    << "hero: true" <br>
+    << "villain: false" <br>
+    << "allies: Batman,Supergirl,Superboy" <br>
+    << "fly: function (){<br>
+        console.log(\"Up, up and away!\"); <br>
+    }" <br>
+    <br>
+</p>
+<h3>Chapter 6 The Document Object Model (DOM)</h3>
+<p>
+    <b>Document Object Model</b> - represents everything on an HTML page as <br> nodes. From tags to attributes. <br>
+    <br>
+    The DOM treats everything on a web page as a node. HTML tags, the <br> text inside these tags, even the attributes of a tag are all <br> nodes. The HTML tag is the root node, and every other part of the <br> document is a child node of this. <br>
+    <br>
+    const body = document.body; <br>
+    <br>
+    body.nodeType; <br>
+    << 1 <br>
+    <br>
+    Codes and their type <br>
+    1 : element, 2 : attribute, 3 : text, 8 : comment, 9 : body <br>
+    <br>
+    Setting an Element's Attribute <br>
+    wonderWoman.setAttribute('class', 'hero');<br>
+    <br>
+    <b>Updating CSS</b> <br>
+    <br>
+    const heroes = document.getElementById('roster'); <br>
+    const superman = heroes.children[0]; <br>
+    <br>
+    superman.style.border = "red 2px solid"; <br>
+    << "red 2px solid" <br>
+    <br>
+</p>
+<h3>Chapter 7 Events</h3>
+<p>
+    document.body.addventListener("click", doSomething); <br>
+    Instead of having to always monitor when an event occurs, event <br> listeners send notification alerts to the program. Some common <br> listeners are mouse listeners or keyboard listeners. <br>
+    <br>
+    <b>Handling Events</b> <br>
+    <br>
+    &lt;!doctype html&gt; <br>
+    <br>
+    &lt;p&gt; Drag the bar to change its width:&lt;/p&gt; <br>
+    &lt;div&gt; style="background: orange; width: 60px; height:20px"> <br>
+    &lt;/div&gt; <br>
+    &lt;script&gt; <br>
+    let lastX; // Tracks the last observed mouse X position <br>
+    let bar = document.querySelector("div"); <br>
+    bar.addEventListener("mousedown", event => { <br>
+        if (event.button == 0) { <br>
+        <span class="tab"></span>lastX = event.clientX; <br>
+        <span class="tab"></span>window.addEventListener("mousemove", moved); <br>
+        <span class="tab"></span>event.preventDefault(); // Prevent selection <br>
+        } <br>
+    }); <br>
+    <br>
+    function moved(event) { <br>
+        if (event.buttons == 0) { <br>
+        <span class="tab"></span>window.removeEventListener("mousemove", moved); <br>
+        } else { <br>
+        <span class="tab"></span>let dist = event.clientX - lastX; <br>
+        <span class="tab"></span>let newWidth = Math.max(10, bar.offsetWidth + dist); <br>
+        <span class="tab"></span>bar.style.width = newWidth + "px"; <br>
+        <span class="tab"></span>lastX = event.clientX; <br>
+        } <br>
+    } <br>
+    &lt;/script&gt;<br>
+</p>
 </body>
 </html>
