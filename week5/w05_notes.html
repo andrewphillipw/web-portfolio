@@ -74,183 +74,189 @@
         </p>
     <h3>WHY DEBUGGING IS IMPORTANT</h3>
         <p>
-            Javascript is a forgiving language, so it'll often fail
-            silently in the background (instead of crashing right away).
-            This also makes errors longer to track down and more difficult
-            to spot when things do go wrong. Rigorous testing required.
+            Javascript is a forgiving language, so it'll often fail<br>
+            silently in the background (instead of crashing right away).<br>
+            This also makes errors longer to track down and more difficult<br>
+            to spot when things do go wrong. Rigorous testing required.<br>
         </p>
     <h3>STRICT MODE</h3>
         <p>
-            This mode no longer tolerates coding practices that were once
-            considered as 'poor style'. This actually improves the speed
-            and clarity of how code is written.
+            This mode no longer tolerates coding practices that were once<br>
+            considered as 'poor style'. This actually improves the speed<br>
+            and clarity of how code is written.<br>
         </p>
         <p>
-            Strict mode example
-            'use strict';
-
-            e = 2.718;
-            << ReferenceError: e is not defined
+            Strict mode example<br>
+            'use strict';<br>
+            <br>
+            e = 2.718;<br>
+            << ReferenceError: e is not defined<br>
         </p>
     <h3>LINTING TOOLS</h3>
         <p>
-            JS Lint,JS Hint, and ES Lint can be used to test the quality of JavaScript code.
-            These will complain if certain programming styling conventions are not followed
-            (indentation, arithmetic operators). They can help with enforcing or following
-            a programming style guide. These are either text-editor plugins or online.
+            JS Lint,JS Hint, and ES Lint can be used to test the quality of JavaScript code.<br>
+            These will complain if certain programming styling conventions are not followed<br>
+            (indentation, arithmetic operators). They can help with enforcing or following<br>
+            a programming style guide. These are either text-editor plugins or online.<br>
         </p>
     <h3>DEBUGGING TOOLS</h3>
         <p>
-            These can be used when debugging: alert(), console.log(), & debugger.
-            !! Remember to remove any references to 'debugger' command before shipping any code.
-
-            I) alert() method - to show a dialog in browser at certain points in the code
-
-            function amIOldEnough(age){
-                if (age = 12) {
-                    alert(age);
-                    return 'No, sorry.';
-                } else if (age < 18) {
-                    return 'Only if you are accompanied by an adult.';
-                }
-                else {
-                    return 'Yep, come on in!';
-                }
-            }
-
-            II) console.log() example
-
-            function amIOldEnough(age){
-                console.log(age);
-                    if (age < 12) {
-                    <span class="tab"></span>console.log(`In the if with ${age}`);
-                    <span class="tab"></span>return 'No, sorry.';
-                    } else if (age < 18) {
-                    console.log(`In the else-if with ${age}`);
-                    return 'Only if you are accompanied by an adult.';
-                    } else {
-                    console.log(`In the else with ${age}`);
-                    return 'Yep, come on in!';
-                }
-            }
-
-            III) 'debugger' example
-
-            function amIOldEnough(age){
-                debugger;
-                    if (age < 12) {
-                    debugger;
-                    return 'No, sorry.';
-                    } else if (age < 18) {
-                    debugger;
-                    return 'Only if you are accompanied by an adult.';
-                    } else {
-                    debugger;
-                    return 'Yep, come on in!';
-                }
-            }
-
-            amIOldEnough(16);
+            These can be used when debugging: alert(), console.log(), & debugger.<br>
+            !! Remember to remove any references to 'debugger' command before shipping any code.<br>
+            <br>
+            <b>I) alert() method -</b> to show a dialog in browser at certain points in the code<br>
+            <br>
+            function amIOldEnough(age){<br>
+                if (age = 12) {<br>
+                <span class="tab"></span>alert(age);<br>
+                <span class="tab"></span>return 'No, sorry.';<br>
+                } else if (age < 18) {<br>
+                <span class="tab"></span>return 'Only if you are accompanied by an adult.';<br>
+                }<br>
+                else {<br>
+                <span class="tab"></span>return 'Yep, come on in!';<br>
+                }<br>
+            }<br>
+            <br>
+            <b>II) console.log()</b> example<br>
+            <br>
+            function amIOldEnough(age){<br>
+                console.log(age);<br>
+                    if (age < 12) {<br>
+                    <span class="tab"></span>console.log(`In the if with ${age}`);<br>
+                    <span class="tab"></span>return 'No, sorry.';<br>
+                    } else if (age < 18) {<br>
+                    <span class="tab"></span>console.log(`In the else-if with ${age}`);<br>
+                    <span class="tab"></span>return 'Only if you are accompanied by an adult.';<br>
+                    } else {<br>
+                    <span class="tab"></span>console.log(`In the else with ${age}`);<br>
+                    <span class="tab"></span>return 'Yep, come on in!';<br>
+                }<br>
+            }<br>
+            <br>
+            <b>III) 'debugger' example</b><br>
+            <br>
+            function amIOldEnough(age){<br>
+                debugger;<br>
+                    if (age < 12) {<br>
+                    <span class="tab"></span>debugger;<br>
+                    <span class="tab"></span>return 'No, sorry.';<br>
+                    } else if (age < 18) {<br>
+                    <span class="tab"></span>debugger;<br>
+                    <span class="tab"></span>return 'Only if you are accompanied by an adult.';<br>
+                    } else {<br>
+                    <span class="tab"></span>debugger;<br>
+                    <span class="tab"></span>return 'Yep, come on in!';<br>
+                }<br>
+            }<br>
+            <br>
+            amIOldEnough(16);<br>
         </p>
     <h3>ERROR OBJECTS</h3>
         <p>
-            An object can be created in the host-environment.
-
-            const error = new Error('Oops, something went wrong');
-
-            It has the following properties: name (name of error), message (description
-            of the error, & stack (stack trace of error).
-
-            More error objects: EvalError (uses eval()), RangeError, ReferenceError,
-            SyntaxError, TypeError, URIError, and InternalError.
+            An object can be created in the host-environment.<br>
+            <br>
+            const error = new Error('Oops, something went wrong');<br>
+            <br>
+            It has the following properties: name (name of error), message (description<br>
+            of the error, & stack (stack trace of error).<br>
+            <br>
+            More error objects: EvalError (uses eval()), RangeError, ReferenceError,<br>
+            SyntaxError, TypeError, URIError, and InternalError.<br>
         </p>
     <h3>THROWING EXCEPTIONS</h3>
         <p>
-            You can throw your own error messages.
-
-            The throw statement can be applied to any JavaScript expression, causing the
-            execution of the program to stop, or halt, immediately
-
-            Example of throwing an error message:
-
-            throw 2;
-            throw 'Up';
-            throw { toys: 'out of pram' };
-
-            Example throwing an error object (better practice):
-
-            throw new Error('Something has gone badly wrong!');
+            You can throw your own error messages.<br>
+            <br>
+            The throw statement can be applied to any JavaScript expression, causing the<br>
+            execution of the program to stop, or halt, immediately<br>
+            <br>
+            Example of throwing an error message:<br>
+            <br>
+            throw 2;<br>
+            throw 'Up';<br>
+            throw { toys: 'out of pram' };<br>
+            <br>
+            Example throwing an error object (better practice):<br>
+            <br>
+            throw new Error('Something has gone badly wrong!');<br>
         </p>
     <h3>HANDLING EXCEPTIONS</h3>
         <p>
-            Errors can be caught, producing smoother exception handling.
-            This is done by using: try,catch, and finally.
-
-            function imaginarySquareRoot(number) {
-                'use strict';
-                let answer;
-                try {
-                    answer = String(squareRoot(number));
-                } catch(error) {
-                    answer = squareRoot(-number)+"i";
-                } finally {
-                    return `+ or - ${answer}`;
-                }
-            }
+            Errors can be caught, producing smoother exception handling.<br>
+            This is done by using: try,catch, and finally.<br>
+            <br>
+            function imaginarySquareRoot(number) {<br>
+                'use strict';<br>
+                let answer;<br>
+                try {<br>
+                    <span class="tab"></span>answer = String(squareRoot(number));<br>
+                } catch(error) {<br>
+                    <span class="tab"></span>answer = squareRoot(-number)+"i";<br>
+                } finally {<br>
+                    <span class="tab"></span>return `+ or - ${answer}`;<br>
+                }<br>
+            }<br>
         </p>
     <h3>TEST-DRIVEN DEVELOPMENT</h3>
         <p>
-            Test-driven development(TDD) is the process of writing tests before any actual code.
-            Below there are quite a few steps, ideally you'd run many tests. However, if you
-            only can write one or two tests, that's better than no tests. It is also important
-            to note that TDD be too cumbersome or even can hurt program designs (Hansson).
-
-            Here's its workflow:
-
-            1) Write tests (that initially fail)
-
-            2) Write code to pass the tests
-
-            3) Refactor the code
-
-            4) Test refactored code
-
-            5) Write more tests for new features
-
-            Jest is a TDD framework created by Facebook
-
-            Install via the terminal:
-            npm install -g jest
-
-            Verify the installation:
-            jest -v
-            << v19.0.2
-
-            Write a test for your function:
-            function squareRoot(number) {
-                'use strict';
-                if (number < 0) {
-                    throw new RangeError("You can't find the square root of negative numbers")
-                }
-                return Math.sqrt(number);
-            };
-
-            test('square root of 4 is 2', () => {
-            expect(squareRoot(4)).toBe(2);
-            });
-
-            Navigate to the folder that has filesquareRoot.test.js & run this command:
-            jest -c {}
-
-            See the Results:
-            << PASS  ./squareRoot.test.js
-            ✓ square root of 4 is 2 (2ms)
-
-            Test Suites: 1 passed, 1 total
-            Tests:       1 passed, 1 total
-            Snapshots:   0 total
-            Time:        2.996s
-
+            Test-driven development(TDD) is the process of writing tests before any actual code.<br>
+            Below there are quite a few steps, ideally you'd run many tests. However, if you<br>
+            only can write one or two tests, that's better than no tests. It is also important<br>
+            to note that TDD be too cumbersome or even can hurt program designs (Hansson).<br>
+            <br>
+            Here's its workflow:<br>
+            <ol>
+                <li>
+                    Write tests (that initially fail)
+                </li>
+                <li>
+                    Write code to pass the tests
+                </li>
+                <li>
+                    Refactor the code
+                </li>
+                <li>
+                    Test refactored code
+                </li>
+                <li>
+                    Write more tests for new features
+                </li>
+            </ol>
+            <br>
+            Jest is a TDD framework created by Facebook<br>
+            <br>
+            Install via the terminal:<br>
+            npm install -g jest<br>
+            <br>
+            Verify the installation:<br>
+            jest -v<br>
+            << v19.0.2<br>
+            <br>
+            Write a test for your function:<br>
+            function squareRoot(number) {<br>
+                'use strict';<br>
+                if (number < 0) {<br>
+                <span class="tab"></span>throw new RangeError("You can't find the square root of negative numbers")<br>
+                }<br>
+                return Math.sqrt(number);<br>
+            };<br>
+            <br>
+            test('square root of 4 is 2', () => {<br>
+            expect(squareRoot(4)).toBe(2);<br>
+            });<br>
+            <br>
+            Navigate to the folder that has filesquareRoot.test.js & run this command:<br>
+            jest -c {}<br>
+            <br>
+            See the Results:<br>
+            << PASS  ./squareRoot.test.js<br>
+            ✓ square root of 4 is 2 (2ms)<br>
+            <br>
+            Test Suites: 1 passed, 1 total<br>
+            Tests:       1 passed, 1 total<br>
+            Snapshots:   0 total<br>
+            Time:        2.996s<br>
         </p>
 </body>
 </html>

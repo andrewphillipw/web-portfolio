@@ -4,46 +4,335 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebPortfolio</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
     <h1>Web Portfolio</h1>
     <h2>Week 08 Notes</h2>
-    <h3></h3>
+    <p>Nov 6, 2021</p>
+    <br>
+    <h3>TRANSFORMS & TRANSITIONS</h3>
+    <h3>I. Transforms - </h3>
         <p>
-
+            move or change the appearance of an element.<br>
+            This includes rotating, moving, skewing, & scaling elements.<br>
         </p>
-    <h3></h3>
+        <br>
+        <ol>
+            <li>rotate - rotates elements clockwise or counterclockwise by <br>
+            a number of degrees: 90deg (clockwise) -90deg (counterclockwise) <br>
+            <br>
+            div:hover { <br>
+            transform: rotate(180deg); <br>
+            }</li> <br>
+            <br>
+            <li>translate (move) - moves an element left/right or up/down by giving <br> the X and Y coordinates. <br>
+            <br>
+            div:hover { <br>
+            transform: translate(20px, 20px);//rt 20px, dwn 20px <br>
+            }</li> <br>
+            <br>
+            <li>skew - tilts an element one direction based on the values given for <br> the X and Y coordinates. +X (tilt left), -X (tilt right), +Y (tilt down), <br>  -Y(tilt up) <br>
+            <br>
+            div { <br>
+            transform: skewX(25deg); <br>
+            transform: skewY(10deg); <br>
+            transform: skew(25deg, 10deg); <br>
+            }</li> <br>
+            <br>
+            <li>scale - increase or decrease the size. 2 would be double <br>
+            the size while 0.5 would be half. <br>
+            <br>
+            div:hover { <br>
+            transform: scale(2); <br>
+            }</li> <br>
+            <br>
+        </ol>
+    <h3>II. Transitions -</h3>
         <p>
-
+            make the element change from one state to
+            another gradually and smoothly <br>
+            <br>
+            Two properties are required for transition effect: <br>
         </p>
-    <h3></h3>
+        <ol>
+            <li>transition-property - select the CSS property <br>
+            <br>
+            div { <br>
+            transition-property: all; <br>
+            transition-property: transform; <br>
+            } <br>
+            }</li> <br>
+            <li>transition-duration - specifies the time span of the transition <br>
+            <br>
+            div { <br>
+            transition-duration: 3s; <br>
+            } <br>
+            <br>
+            A more complex coding example: <br>
+            <br>
+            the HTML: <br>
+             <br>
+            &lt;div class="container"&gt; <br>
+            &lt;div class="circle0"&gt;&lt;/div&gt; <br>
+            &lt;div class="circle1"&gt;&lt;/div&gt; <br>
+            &lt;div class="circle2"&gt;&lt;/div&gt; <br>
+            &lt;div class="circle3"&gt;&lt;/div&gt; <br>
+            &lt;div class="circle4"&gt;&lt;/div&gt; <br>
+            &lt;div class="circle5"&gt;&lt;/div&gt; <br>
+            &lt;/div&gt; <br>
+            <br>
+            the CSS: <br>
+            <br>
+            .container { <br>
+            margin: 100px; <br>
+            } <br>
+            <br>
+            .circle { <br>
+            border-radius: 50%; <br>
+            height: 30px; <br>
+            width: 30px; <br>
+            margin: 10px; <br>
+            <br>
+            .container:hover & { <br>
+                transform: translateX(200px); <br>
+            } <br>
+            } <br>
+            <br>
+            .circle0 { <br>
+            @extend .circle; <br>
+            background: PaleTurquoise; <br>
+            transition: all 1.5s linear; <br>
+            } <br>
+            <br>
+            .circle1 { <br>
+            @extend .circle; <br>
+            background: salmon; <br>
+            transition: all 1.5s ease; <br>
+            } <br>
+            <br>
+            .circle2 { <br>
+            @extend .circle; <br>
+            background: lightskyblue; <br>
+            transition: all 1.5s ease-in; <br>
+            } <br>
+            <br>
+            .circle3 { <br>
+            @extend .circle; <br>
+            background: khaki; <br>
+            transition: all 1.5s ease-out; <br>
+            } <br>
+            <br>
+            .circle4 { <br>
+            @extend .circle; <br>
+            background: mediumturquoise; <br>
+            transition: all 1.5s ease-in-out; <br>
+            } <br>
+            <br>
+            .circle5 { <br>
+            @extend .circle; <br>
+            background: thistle; <br>
+            transition: all 1.5s cubic-bezier(0,1,.98,0); <br>
+            } <br>
+            </li> <br>
+        </ol>
+    <h3>CANVAS, SVG, DRAG & DROP</h3>
+    <h3>I. Canvas -</h3>
         <p>
-
+             an html element that was first developed by Apple for the <br> purpose of drawing in a 2d space. Width and height need to be set in its <br> tag properties (coordinate-system of canvas), not in the CSS or styling page. <br>
         </p>
-    <h3></h3>
+        <br>
         <p>
-
+            &lt;html&gt; <br>
+            &lt;head&gt; <br>
+                &lt;title&gt;Background Image and Border&lt;/title&gt; <br>
+                &lt;style&gt; <br>
+                    canvas { <br>
+                        background-image: url('cork.png'); <br>
+                        border: 10px inset brown; <br>
+                    } <br>
+                &lt;/style&gt; <br>
+                &lt;script type="text/javascript"&gt; <br>
+                    function init() { <br>
+                    <span class="tab"></span>var can = document.getElementById("can"); <br>
+                    <span class="tab"></span>var ctx = can.getContext("2d"); <br>
+                    <span class="tab"></span>ctx.fillStyle = "white"; <br>
+                    <span class="tab"></span>ctx.fillRect(25,25,120,100); <br>
+                    <span class="tab"></span>ctx.font = "24pt Helvetica"; <br>
+                    <span class="tab"></span>ctx.fillStyle = "black"; <br>
+                    <span class="tab"></span>ctx.fillText("Notice:", 30, 55); <br>
+                    } <br>
+                &lt;/script&gt; <br>
+            &lt;/head&gt; <br>
+            &lt;body onload="init()"&gt; <br>
+                &lt;canvas id="can" height="200" width="400"&gt; <br>
+                &lt;/canvas&gt; <br>
+            &lt;/body&gt; <br>
+            &lt;/html&gt; <br>
         </p>
-    <h3></h3>
+    <h3>II. SVG -</h3>
         <p>
-
+            Scalable Vector Graphics specific file format to describe <br> vector graphics using XML. <br> Vectors preserve their quality whether they <br> are blown up or shrunken down; bitmap images (GIF, JPEG, PNG) do not keep <br> their quality after such scaling. <br>
+            <br>
+            Images created with SVG are available via the DOM, whereas canvas is  <br> inaccessible from the DOM. <br>
+            <br>
+            A circle example: <br>
+            <br>
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"&gt; <br>
+            <br>
+            &lt;circle cx="50" cy="50" r="25" fill="red"/&gt; <br>
+            <br>
+            &lt;/svg&gt; <br>
+        </p> <br>
+    <h3>III. Drag & Drop -</h3>
+        <p>
+            Drag and Drop API allows certain elements to be <br> draggable, then this is combined with a mouse event listener and some <br> conditionals to make a more interactive webpage! <br>
         </p>
-    <h3></h3>
+        <br>
         <p>
-
-        </p>
-    <h3></h3>
-        <p>
-
-        </p>
-    <h3></h3>
-        <p>
-
-        </p>
-    <h3></h3>
-        <p>
-
+            Coding Example <br>
+            index.html file: <br>
+            <br>
+            &lt;!DOCTYPE html&gt; <br>
+            &lt;html lang="en"&gt; <br>
+            &lt;head&gt; <br>
+                <span class="tab"></span>&lt;meta charset="utf-8"&gt; <br>
+                <span class="tab"></span>&lt;title&gt;Drag & Drop on Canvas&lt;/title&gt; <br>
+                <span class="tab"></span>&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt; <br>
+                <span class="tab"></span>&lt;script src="https://giottojs.org/d3-canvas<br><span class="tab"></span><span class="tab"></span>-transition/0.3.6/d3-canvas-transition.js"&gt;&lt;/script&gt; <br>
+            &lt;/head&gt; <br>
+            &lt;body&gt; <br>
+            &lt;div id="paper"&gt; <br>
+                &lt;label&gt;l <br>
+                    &lt;input id='svg' name="type" type="radio" checked&gt; <br>
+                    &lt;span&gt;svg&lt;/span&gt; <br>
+                &lt;/label&gt; <br>
+                &lt;label&gt; <br>
+                    &lt;input id='canvas' name="type" type="radio"&gt; <br>
+                    &lt;span&gt;canvas&lt;/span&gt; <br>
+                &lt;/label&gt; <br>
+            &lt;/div&gt; <br>
+            &lt;div id="example" style="max-width: 960px"&gt;&lt;/div&gt; <br>
+            &lt;script src="./script.js"&gt;&lt;/script&gt; <br>
+            &lt;/body&gt; <br>
+            </html&gt; <br>
+             <br>
+            script.js file: <br>
+             <br>
+            (function () { <br>
+                d3.select('#svg').on('click', function () { <br>
+                    draw('svg'); <br>
+                }); <br>
+                d3.select('#canvas').on('click', function () { <br>
+                    draw('canvas'); <br>
+                }); <br>
+                if (d3.resolution() > 1) { <br>
+                    <span class="tab"></span>d3.select('#paper').append('label').html( <br>
+                            <span class="tab"></span>"&lt;input id='canvas-low' name='type' type='radio'&gt;&lt;span&gt;canvas low resolution&lt;/span&gt;" <br>
+                    <span class="tab"></span>); <br>
+                    <span class="tab"></span>d3.select('#canvas-low').on('click', function () { <br>
+                        <span class="tab"></span>draw('canvas', 1); <br>
+                    <span class="tab"></span>}); <br>
+                } <br>
+                 <br>
+                var example = d3.select("#example"), <br>
+                    width = d3.getSize(example.style('width')), <br>
+                    height = Math.min(500, width), <br>
+                    radius = 20, <br>
+                    area = Math.PI*radius*radius, <br>
+                    margin = 2*radius, <br>
+                    text = ''; <br>
+                 <br>
+                var shapes = ['Circle', 'Cross', 'Diamond', 'Square', 'Star', 'Triangle', 'Wye'], <br>
+                    color = d3.scaleSequential(d3.interpolateViridis), <br>
+                    N = 20, <br>
+                    points = d3.range(N).map(function(i) { <br>
+                    return { <br>
+                        type: shapes[Math.floor(Math.random()*shapes.length)], <br>
+                        color: color((i+1)/N), <br>
+                        x: Math.round(Math.random() * (width - 2*margin) + margin), <br>
+                        y: Math.round(Math.random() * (height - 2*margin) + margin) <br>
+                    }; <br>
+                }); <br>
+                 <br>
+                draw('svg'); <br>
+                 <br>
+                function draw(type, r) { <br>
+                    example.select('.paper').remove(); <br>
+                    var paper = example <br>
+                        .append(type) <br>
+                        .classed('paper', true) <br>
+                        .style('stroke', '#333') <br>
+                        .attr('width', width).attr('height', height).canvasResolution(r).canvas(true); <br>
+                     <br>
+                    var marks = d3.symbol().type(function (d) {return d3['symbol' + d.type];}).size<br><span class="tab"></span><span class="tab"></span>(function (d) {return area;}); <br>
+                     <br>
+                    paper.append('rect') <br>
+                        .attr('x', 0) <br>
+                        .attr('y', 0) <br>
+                        .attr('width', width) <br>
+                        .attr('height', height) <br>
+                        .style("stroke-width", 0) <br>
+                        .style('fill', '#333') <br>
+                        .style('fill-opacity', 0.1) <br>
+                        .on("mousemove.hover", mouseover); <br>
+                     <br>
+                    paper <br>
+                        .selectAll("path") <br>
+                        .data(points) <br>
+                        .enter() <br>
+                        .append("path") <br>
+                        .attr("transform", translate) <br>
+                        .attr("d", marks) <br>
+                        .style("fill", function (d) {return d.color;}) <br>
+                        .style("stroke-width", 0) <br>
+                        .on("mouseenter.hover", mouseenter) <br>
+                        .on("mouseleave.hover", end) <br>
+                        .call(d3.drag() <br>
+                        .on("start", dragstarted) <br>
+                        .on("drag", dragged) <br>
+                        .on("end", mouseenter)); <br>
+                     <br>
+                    var coord = paper.append('text') <br>
+                        .text(text) <br>
+                        .classed('coord', true) <br>
+                        .style('font-size', '20px') <br>
+                        .style('text-anchor', 'middle') <br>
+                        .style('alignment-baseline', 'middle') <br>
+                        .attr("transform", translate({x: width-100, y: 20})); <br>
+                     <br>
+                    function mouseover () { <br>
+                        text = d3.event.offsetX + ', ' + d3.event.offsetY; <br>
+                        coord.text(text); <br>
+                    } <br>
+                     <br>
+                    function mouseenter () { <br>
+                        d3.select(this).style('stroke-width', '1px').style("fill", '#fff').style('cursor', 'move'); <br>
+                    } <br>
+                     <br>
+                    function dragstarted () { <br>
+                        d3.select(this).raise().style('stroke-width', '2px'); <br>
+                    } <br>
+                     <br>
+                    function dragged(d) { <br>
+                        d.x = d3.event.x; <br>
+                        d.y = d3.event.y; <br>
+                        d3.select(this).attr("transform", translate(d)); <br>
+                    } <br>
+                     <br>
+                    function end() { <br>
+                        var el = d3.select(this), <br>
+                            d = el.datum(); <br>
+                        el.style("stroke-width", 0).style("fill", d.color).style('cursor', 'default'); <br>
+                    } <br>
+                     <br>
+                    function translate (d) { <br>
+                        return "translate(" + d.x + "," + d.y + ")"; <br>
+                    } <br>
+                } <br>
+            }()); <br>
+             <br>
+            TIP: Mouse interactions on svg and canvas can use the same API if the <br> d3-canvas-transition module is added to a project. <br>
         </p>
 </body>
 </html>
