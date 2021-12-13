@@ -9,472 +9,513 @@
 <body>
     <h1>Web Portfolio</h1>
     <h2>Week 07 Notes</h2>
-    <p>Oct 29, 2021</p> <br>
+    <p>Oct 29, 2021</p>
     <h3>I. Function properties and methods</h3>
         <p>
-            All functions have properties and methods, such
-            as the length property (num of parameters).
-
-            function square(x) {
-            return x*x;
-            }
-
-            square.length
-            << 1
-
-            memoization - is saving a result of a function in a
-            chache property instead of computing the result again.
-
-            square(3);
-            << 9
-            square(-11);
-            << 121
-            square.cache;
-            << {"3": 9, "-11": 121}
+            All functions have properties and methods, such  <br>
+            as the length property (num of parameters). <br>
+             <br>
+            function square(x) { <br>
+            <span class="tab"></span>return x*x; <br>
+            } <br>
+             <br>
+            square.length <br>
+            << 1 <br>
+             <br>
+            <b>memoization -</b> is saving a result of a function in a <br>
+            chache property instead of computing the result again. 0
+             <br>
+            square(3); <br>
+            << 9 <br>
+            square(-11); <br>
+            << 121 <br>
+            square.cache; <br>
+            << {"3": 9, "-11": 121} <br>
         </p>
     <h3>II. Immediately Invoked function expressions - IIFE (iffy)   </h3>
         <p>
-            is an anonymous function that is invoked once it's defined.
-            These help to keep a clear global namespace.
-
-            (function(){
-            const temp = 'World';
-            console.log(`Hello ${temp}`);
-            })();
-            << 'Hello World'
-
-            IIFE is often used to as initialization code, all of its
-            variables are just used within it's own scope.
-
-            (function() {
-            const name = 'Peter Parker'; // This might be obtained from
-            ➥ a cookie in reality
-            const days =
-            ➥ ['Sunday','Monday','Tuesday','Wednesday','Thursday',
-            ➥ 'Friday','Saturday'];
-            const date = new Date(),today = days[date.getDay()];
-            console.log(`Welcome back ${name}. Today is ${today}`);
-            })();
-            << 'Welcome back Peter Parker. Today is Tuesday'
+            is an anonymous function that is invoked once it's defined. <br>
+            These help to keep a clear global namespace. <br>
+             <br>
+            (function(){ <br>
+            <span class="tab"></span>const temp = 'World'; <br>
+            <span class="tab"></span>console.log(`Hello ${temp}`); <br>
+            })(); <br>
+            << 'Hello World' <br>
+             <br>
+            IIFE is often used to as initialization code, all of its <br>
+            variables are just used within it's own scope. <br>
+             <br>
+            (function() { <br>
+            <span class="tab"></span>const name = 'Peter Parker'; // This might be obtained from <br>
+            <span class="tab"></span>➥ a cookie in reality <br>
+            <span class="tab"></span>const days = <br>
+            <span class="tab"></span>➥ ['Sunday','Monday','Tuesday','Wednesday','Thursday', <br>
+            <span class="tab"></span>➥ 'Friday','Saturday']; <br>
+            <span class="tab"></span>const date = new Date(),today = days[date.getDay()]; <br>
+            <span class="tab"></span>console.log(`Welcome back ${name}. Today is ${today}`); <br>
+            })(); <br>
+            << 'Welcome back Peter Parker. Today is Tuesday' <br>
+             <br>
         </p>
     <h3>III. Callbacks - </h3>
         <p>
-            are functions passed to other functions as
-            arguments then invoked inside the function they are passed to.
-            Since JavaScript is a single-threaded environment, callbacks are
-            used to facilitate event-driven asynchronous programming.
-            Code can be run without any particular order meaning some tasks that take
-            longer to complete will not hinder the entire program. These include fil
-            download, receiving data from the database, or a complex algorthim finishing.
-
-            function wait(message, callback, seconds){
-            setTimeout(callback,seconds * 1000);
-            console.log(message);
-            }
-
-            function selfDestruct(){
-            console.log('BOOOOM!');
-            }
-
-            wait('This tape will self-destruct in five seconds ... ',
-            ➥ selfDestruct, 5);
-            console.log('Hmmm, should I accept this mission or not ...
-            ➥ ?');
-            << 'This tape will self-destruct in five seconds ... '
-            << 'Hmmm, should I accept this mission or not ... ? '
-            << 'BOOOOM!'
+            are functions passed to other functions <br>
+            as arguments then invoked inside the function they are passed to. <br>
+            Since JavaScript is a single-threaded environment, callbacks are <br>
+            used to facilitate event-driven asynchronous programming. <br>
+            Code can be run without any particular order meaning some tasks <br>
+            that take longer to complete will not hinder the entire program. <br> These include file
+            download, receiving data <br> from the database, or a complex algorthim finishing. <br>
+             <br>
+            function wait(message, callback, seconds){ <br>
+            <span class="tab"></span>setTimeout(callback,seconds * 1000); <br>
+            <span class="tab"></span>console.log(message); <br>
+            } <br>
+             <br>
+            function selfDestruct(){ <br>
+            <span class="tab"></span>console.log('BOOOOM!'); <br>
+            } <br>
+             <br>
+            wait('This tape will self-destruct in five seconds ... ', <br>
+            ➥ selfDestruct, 5); <br>
+            console.log('Hmmm, should I accept this mission or not ... <br>
+            ➥ ?'); <br>
+            << 'This tape will self-destruct in five seconds ... ' <br>
+            << 'Hmmm, should I accept this mission or not ... ? ' <br>
+            << 'BOOOOM!' <br>
         </p>
     <h3>IV. Promises - </h3>
         <p>
-            represent future result of an asynchronous operation.
-            Similar to callbacks in function, these help simplify the process
-            and keep the code from becoming too convoluted from excessive use
-            of multiple callbacks.
-
-            States of Promise: when created it's considered pending/unsettled.
-            At its end it will be settled: either resolved (successful) or
-            rejected (unsucessful, an error or bug).
-
-            const dice = {
-            sides: 6,
-            roll() {
-            return Math.floor(this.sides * Math.random()) + 1;
-            }
-            }
-
-            const promise = new Promise( (resolve,reject) => {
-            const n = dice.roll();
-            setTimeout(() => {
-            (n > 1) ? resolve(n) : reject(n);
-            }, n*1000);
-            });
-
-            Chaining multiple promises
-            Promises can be chained together via then() methods to form
-            a code blocks that easier to read. Each promise has to be
-            settled before the next promise can begin.
-
-            login(userName)
-            .then(user => getPlayerInfo(user.id))
-            .then(info => loadGame(info))
-            .catch( throw error)
+            represent future result of an asynchronous operation. <br>
+            Similar to callbacks in function, these help simplify the process <br>
+            and keep the code from becoming too convoluted from excessive use <br>
+            of multiple callbacks. <br>
+             <br>
+            States of Promise: when created it's considered pending/unsettled. <br>
+            At its end it will be settled: either resolved (successful) or <br>
+            rejected (unsucessful, an error or bug). <br>
+             <br>
+            const dice = { <br>
+            <span class="tab"></span>sides: 6, <br>
+            <span class="tab"></span>roll() { <br>
+            <span class="tab"></span>return Math.floor(this.sides * Math.random()) + 1; <br>
+            <span class="tab"></span>} <br>
+            } <br>
+             <br>
+            const promise = new Promise( (resolve,reject) => { <br>
+            <span class="tab"></span>const n = dice.roll(); <br>
+            <span class="tab"></span>setTimeout(() => { <br>
+            <span class="tab"></span>(n > 1) ? resolve(n) : reject(n); <br>
+            <span class="tab"></span>}, n*1000); <br>
+            }); <br>
+             <br>
+            <b>Chaining multiple promises</b> <br>
+            Promises can be chained together via then() methods to form <br>
+            a code blocks that easier to read. Each promise has to be <br>
+            settled before the next promise can begin. <br>
+             <br>
+            login(userName) <br>
+            .then(user => getPlayerInfo(user.id)) <br>
+            .then(info => loadGame(info)) <br>
+            .catch( throw error) <br>
         </p>
     <h3>V. Async functions - </h3>
         <p>
-            allow you to write asynchronous code as if
-it was synchronous, by using the await operator.
 
-            async function loadGame(userName) {
-            try {
-                const user = await login(userName);
-                const info = await getPlayerInfo (user.id);
-                // load the game using the returned info
-                }
-                catch (error){
-                throw error;
-                }
-            }
+            allow you to write asynchronous code as if <br>
+            it was synchronous, by using the await operator. <br>
+             <br>
+            async function loadGame(userName) { <br>
+            try { <br>
+                <span class="tab"></span>const user = await login(userName); <br>
+                <span class="tab"></span>const info = await getPlayerInfo (user.id); <br>
+                // load the game using the returned info <br>
+                } <br>
+                catch (error){ <br>
+                <span class="tab"></span>throw error; <br>
+                } <br>
+            } <br>
+             <br>
         </p>
     <h3>VI. Functions that return functions - </h3>
         <p>
-            instead of accepting functions
-            as arguments (callbacks) functions can return functions, which is
-            then assigned to a variable.
-
-            function returnHello() {
-            console.log('returnHello() called');
-            return function() {
-            console.log('Hello World!');
-            }
-            }
-
-            const hello = returnHello();
-            << returnHello() called
+            instead of accepting functions <br>
+            as arguments (callbacks) functions can return functions, which is <br>
+            then assigned to a variable. <br>
+             <br>
+            function returnHello() { <br>
+            <span class="tab"></span>console.log('returnHello() called'); <br>
+            <span class="tab"></span>return function() { <br>
+            <span class="tab"></span><span class="tab"></span>console.log('Hello World!'); <br>
+            <span class="tab"></span>} <br>
+            } <br>
+             <br>
+            const hello = returnHello(); <br>
+            << returnHello() called <br>
+             <br>
         </p>
     <h3>VII. Closures - </h3>
         <p>
-            placing one function within another (nested). The closure
-            is not formed until after the inner function is returned by the outer function.
-
-            function outer() {
-            const outside = 'Outside!';
-            function inner() {
-            const inside = 'Inside!';
-            console.log(outside);
-            console.log(inside);
-            }
-            console.log(outside);
-            inner();
-            }
-
-            A different style for closures (not nested within):
-
-            function closure() {
-            const a = 1.8;
-            const b = 32;
-            return c => c * a + b;
-            }
-
-            const toFahrenheit = closure();
-
-            toFahrenheit(30);
-            << 86
+            placing one function within another (nested). The closure <br>
+            is not formed until after the inner function is returned <br> by the outer function. <br>
+             <br>
+            function outer() { <br>
+                <span class="tab"></span>const outside = 'Outside!'; <br>
+                <span class="tab"></span>function inner() { <br>
+                <span class="tab"></span><span class="tab"></span>const inside = 'Inside!'; <br>
+                <span class="tab"></span><span class="tab"></span>console.log(outside); <br>
+                <span class="tab"></span><span class="tab"></span>console.log(inside); <br>
+                <span class="tab"></span>} <br>
+                <span class="tab"></span>console.log(outside); <br>
+                <span class="tab"></span>inner(); <br>
+            } <br>
+             <br>
+            A different style for closures (not nested within): <br>
+             <br>
+            function closure() { <br>
+            <span class="tab"></span>const a = 1.8; <br>
+            <span class="tab"></span>const b = 32; <br>
+            <span class="tab"></span>return c => c * a + b; <br>
+            } <br>
+             <br>
+            const toFahrenheit = closure(); <br>
+             <br>
+            toFahrenheit(30); <br>
+            << 86 <br>
+             <br>
         </p>
     <h3>VIII. Introduction to functional programming -</h3>
         <p>
-            Javascript supports
-            functional-style programming because its functions are first-class objects.
-            These functions can be passed as agruments, returned from other functions,
-            and used by anonymous functions and closures. JS excels at all this.
-
-            Pure function rules - at least one argument & a return value. These functions
-            help make programming code more concise and predictable. This is due to the
-            modular nature of pure functions; if there's a bug in a function, then it is
-            just limited to there and not elsewhere in the program.
-
-            Pure function:
-            1) self-reliant; don't depend on state of code
-            2) have no side-effects; won't affect other areas of program
-            3) repeatable; referential transparency
-
-            function sum(array, callback) {
-            if(callback) {
-            array = array.map(callback);
-            }
-            return array.reduce((a,b) => a + b );
-            }
-
-            sum([1,2,3]); // returns 1 + 2 + 3
-            << 6
-
-            Higher order functions either: accept another function as an argument or
-            return another function as a result. Or Both.
-
-            function multiplier(x){
-            return function(y){
-            return x*y;
-            }
-            }
-
-            doubler = multiplier(2);
-
-            doubler(10);
-            << 20
-
-            tripler = multiplier(3);
-            tripler(10);
-            << 30
+            Javascript supports functional-style programming because its  <br>
+            functions are first-class objects. These functions can be passed  <br>
+            as agruments, returned from other functions,
+            and used by anonymous <br>
+            functions and closures. JS excels at all this. <br>
+             <br>
+            Pure function rules - at least one argument & a return value. <br>
+            These functions help make programming code more concise and <br>
+            predictable. This is due to the modular nature of pure functions; <br>
+            if there's a bug in a function, then it is
+            just limited to there <br>
+            and not elsewhere in the program. <br>
+             <br>
+            <b>Pure function:</b> <br>
+            <ol>
+                <li>
+                    self-reliant; don't depend on state of code
+                </li>
+                <li>
+                    have no side-effects; won't affect other areas of program
+                </li>
+                <li>
+                    repeatable; referential transparency
+                </li>
+            </ol>
+             <br>
+            function sum(array, callback) { <br>
+            <span class="tab"></span>if(callback) { <br>
+            <span class="tab"></span><span class="tab"></span>array = array.map(callback); <br>
+            <span class="tab"></span>} <br>
+            <span class="tab"></span>return array.reduce((a,b) => a + b ); <br>
+            } <br>
+             <br>
+            sum([1,2,3]); // returns 1 + 2 + 3 <br>
+            << 6 <br>
+             <br>
+            Higher order functions either: accept another function as an <br>
+            argument or return another function as a result. Or Both. <br>
+             <br>
+            function multiplier(x){ <br>
+            <span class="tab"></span>return function(y){ <br>
+            <span class="tab"></span>return x*y; <br>
+            <span class="tab"></span>} <br>
+            } <br>
+             <br>
+            doubler = multiplier(2); <br>
+             <br>
+            doubler(10); <br>
+            << 20 <br>
+             <br>
+            tripler = multiplier(3); <br>
+            tripler(10); <br>
+            << 30 <br>
+             <br>
         </p>
     <h3>IX. Currying -</h3>
         <p>
-            applying one aregument at a time withing a function; a new
-            function is returned until all arguments have been expended.
-
-            function curry(func,...oldArgs) {
-            return function(...newArgs) {
-            const allArgs = [...oldArgs,...newArgs];
-            return func(...allArgs);
-            }
-            }
-
-            Additional examples of pure programming:
-
-            function random(a,b=1) {
-            // if only 1 argument is provided, we need to swap the
-            ➥ values of a and b
-            if (b === 1) {
-            [a,b] = [b,a];
-            }
-            return Math.floor((b-a+1) * Math.random()) + a;
-            }
-
-            ask(name){
-                console.log('ask() invoked');
-                if(this.questions.length > 0) {
-                shuffle(this.questions);
-                this.question = this.questions.pop();
-                const question = `What is ${this.question.name}'s real
-            ➥ name?`;
-            view.render(view.question,question);
-            }
+            applying one aregument at a time withing a function; a new <br>
+            function is returned until all arguments have been expended. <br>
+             <br>
+            function curry(func,...oldArgs) { <br>
+            <span class="tab"></span>return function(...newArgs) { <br>
+            <span class="tab"></span><span class="tab"></span>const allArgs = [...oldArgs,...newArgs]; <br>
+            <span class="tab"></span><span class="tab"></span>return func(...allArgs); <br>
+            <span class="tab"></span>} <br>
+            } <br>
+             <br>
+            Additional examples of pure programming: <br>
+             <br>
+            function random(a,b=1) { <br>
+            <span class="tab"></span>// if only 1 argument is provided, we need to swap the <br>
+            <span class="tab"></span>➥ values of a and b <br>
+            <span class="tab"></span>if (b === 1) { <br>
+            <span class="tab"></span><span class="tab"></span>[a,b] = [b,a]; <br>
+            <span class="tab"></span>} <br>
+            <span class="tab"></span>return Math.floor((b-a+1) * Math.random()) + a; <br>
+            } <br>
+             <br>
+            ask(name){ <br>
+                <span class="tab"></span>console.log('ask() invoked'); <br>
+                <span class="tab"></span>if(this.questions.length > 0) { <br>
+                <span class="tab"></span><span class="tab"></span>shuffle(this.questions); <br>
+                <span class="tab"></span><span class="tab"></span>this.question = this.questions.pop(); <br>
+                <span class="tab"></span><span class="tab"></span>const question = `What is ${this. question.<span class="tab"></span>name}'s <br>
+                <span class="tab"></span><span class="tab"></span>real➥ name?`; <br>
+            <span class="tab"></span><span class="tab"></span>view.render(view.question,question); <br>
+            <span class="tab"></span>} <br>
+            } <br>
+             <br>
         </p>
     <h3>AJAX</h3>
         <p>
-            Ajax a tecnique that allows webpages to communicate asynchronoulsy with
-            the server. Dynamic updates: data can be sent and received in the background
-            while the we pages continue to run (no need for refreshing the page).
+            Ajax a tecnique that allows webpages to communicate asynchronoulsy with <br>
+            the server. Dynamic updates: data can be sent and received in the background <br>
+            while the we pages continue to run (no need for refreshing the page). <br>
+             <br>
         </p>
     <h3>I. Clients and servers</h3>
         <p>
-            Client is a web browser being run on a phone or laptop; this is what Javascript
-            was made for: changing things locally. Ajax allows JS to request resources from
-            the server, usually just JSON data or portions of HTML.
-
-            Servers are computers hosting services or websites, using one of the following:
-            PHP, Ruby, Node.js, or .NET (Microsoft). Ajax can be practiced with a local
-            developmental server (on your own pc) or by requesting files from an external
-            website that uses CORS (cross-origin resource sharing).
+             <br>
+            Client is a web browser being run on a phone or laptop; this is what Javascript <br>
+            was made for: changing things locally. Ajax allows JS to request resources from <br>
+            the server, usually just JSON data or portions of HTML. <br>
+             <br>
+            Servers are computers hosting services or websites, using one of the following: <br>
+            PHP, Ruby, Node.js, or .NET (Microsoft). Ajax can be practiced with a local <br>
+            developmental server (on your own pc) or by requesting files from an external <br>
+            website that uses CORS (cross-origin resource sharing). <br>
+             <br>
         </p>
     <h3>II. A brief history of Ajax</h3>
         <p>
-            When the World Wide Web started, web pages were static; any changes seen required
-            a full reload or refresh. Though, some attempts were made to improves this, like
-            XMLHTTP ActiveX control,it wasn't until Google launched Gmail and Google Maps in
-            2004 & 2005 that ansynchronous techniques were used to enhance user experience.
-            This allowed dynamic changes without refreshing the page, making it feel more like
-            a desktop application. Jesse Garrett in 2005 coined the phrase Ajax to define this
-            phenomenon or technique being used. It stands for having the following parts:
+             <br>
+            When the World Wide Web started, web pages were static; any changes seen required <br>
+            a full reload or refresh. Though, some attempts were made to improves this, like <br>
+            XMLHTTP ActiveX control,it wasn't until Google launched Gmail and Google Maps in <br>
+            2004 & 2005 that ansynchronous techniques were used to enhance user experience. <br>
+            This allowed dynamic changes without refreshing the page, making it feel more like <br>
+            a desktop application. Jesse Garrett in 2005 coined the phrase Ajax to define this <br>
+            phenomenon or technique being used. <br>
+            <br>
+            <b>AJAX stands for having the following:</b> <br>
             <ol>
                 <li> Asynchronous (program keeps running even while awaiting response)</li>
                 <li> JavaScript to communicate with the server (allowing real time updates)</li>
                 <li> XML to send data (JSON has since replaced XML</li>
             </ol>
+             <br>
         </p>
     <h3>III. Communicating with the server using the Fetch API</h3>
         <p>
-            API (application programming interface) - a collection of methods that allow external
-            access to another program or service, for instance a weather API or GPS API.
+             <br>
+            API (application programming interface) - a collection of methods that allow  <br>
+            external access to another program or service,
+             for instance a GPS API. <br>
+             <br>
+            Fetch API is now the standard for requesting and sending data asynchronously. <br>
+            It streamlines features that were cumbersome when using the former XMLHttpRequest <br>
+            objects. Fetch API utliizes promises heavily. <br>
 
-            Fetch API is now the standard for requesting and sending data asynchronously. It uses
-            promises and streamlines features that were cumbersome when using XMLHttpRequest objects.
-
-            Basic usage example:
-
-            fetch('https://example.com/data')
-            .then( // code that handles the response )
-            .catch( // code that runis if the server returns an error)
-
-            Response interface example:
-
-            const url = 'https:example.com/data';
-            fetch(url)
-            .then((response) => {
-            if(response.ok) {
-            return response;
-            }
-            throw Error(response.statusText);
-            })
-            .then( response => // do something with response )
-            .catch( error => console.log('There was an error!') )
-
-            JSON response example:
-
-            fetch(url)
-            .then( response => response.json() ); // transforms the
-            ➥ JSON data into a JavaScript object
-            .then( data => console.log(Object.entries(data)) )
-            .catch( error => console.log('There was an error: ',
-            ➥ error))
-
+             <br>
+            Basic usage example: <br>
+             <br>
+            fetch('https://example.com/data') <br>
+            <span class="tab"></span>.then( // code that handles the response ) <br>
+            <span class="tab"></span>.catch( // code that run is if the server returns an error) <br>
+             <br>
+            Response interface example: <br>
+             <br>
+            const url = 'https:example.com/data'; <br>
+            fetch(url) <br>
+            <span class="tab"></span>.then((response) => { <br>
+            <span class="tab"></span>if(response.ok) { <br>
+            <span class="tab"></span><span class="tab"></span>return response; <br>
+            <span class="tab"></span>} <br>
+            <span class="tab"></span>throw Error(response.statusText); <br>
+            <span class="tab"></span>}) <br>
+            <span class="tab"></span>.then( response => // do something with response ) <br>
+            <span class="tab"></span>
+            .catch( error => console.log('There was an error!') ) <br>
+             <br>
+             <br>
+            JSON response example: <br>
+             <br>
+            fetch(url) <br>
+            <span class="tab"></span>.then( response => response.json() ); // <br> <span class="tab"></span>transforms the <br>
+            <span class="tab"></span>➥ JSON data into a JavaScript object <br>
+            <span class="tab"></span>.then( data => console.log(Object.entries(data) ) ) <br>
+            <span class="tab"></span>.catch( error => console.log('There was an error: ', <br>
+            <span class="tab"></span>➥ error)) <br>
+             <br>
         </p>
     <h3>IV. Receiving data with Ajax </h3>
         <p>
-            html page:
-                <!doctype html>
-                <html lang='en'>
-                <head>
-                <meta charset='utf-8'>
-                <title>Ajax Example</title>
-                </head>
-                <body>
-                <button id='number'>Number Fact</button>
-                <button id='chuck'>Chuck Norris Fact</button>
-                <div id='output'>
-                Ajax response will appear here
-                </div>
-                <script src='main.js'></script>
-                </body>
-
-                main.js page:
-                const textButton = document.getElementById('number');
-                const apiButton = document.getElementById('chuck');
-                const outputDiv = document.getElementById('output');
-
-                const textURL = 'http://numbersapi.com/random';
-                const apiURL = 'https://api.chucknorris.io/jokes/random';
-
-                //promise that resolves to a string
-                textButton.addEventListener('click', () => {
-                fetch(textURL)
-                .then( response => {
-                outputDiv.innerHTML = 'Waiting for response...';
-                if(response.ok) {
-                return response;
-                }
-                throw Error(response.statusText);
-                })
-                .then( response => response.text() )
-                .then( text => outputDiv.innerText = text )
-                .catch( error => console.log('There was an error:',
-                ➥ error))
-                },false);
+             <br>
+            html page: <br>
+                 <br>
+                &lt;!doctype html&gt; <br>
+                &lt;html lang='en'&gt; <br>
+                &lt;head&gt; <br>
+                <span class="tab"></span>&lt;meta charset='utf-8'&gt; <br>
+                <span class="tab"></span>&lt;title&gt;Ajax Example&lt;/title&gt; <br>
+                &lt;/head&gt; <br>
+                &lt;body&gt; <br>
+                <span class="tab"></span>&lt;button id='number'&gt;Number Fact&lt;/ button&gt; <br>
+                <span class="tab"></span>&lt;button id='chuck'&gt;Chuck Norris Fact&lt;/button&gt; <br>
+                <span class="tab"></span>&lt;div id='output'&gt; <br>
+                <span class="tab"></span><span class="tab"></span>Ajax response will appear here <br>
+                <span class="tab"></span>&lt;/div&gt; <br>
+                <span class="tab"></span>&lt;script src='main.js'&gt;&lt;/script&gt; <br>
+                &lt;/body&gt; <br>
+                &lt;/html&gt; <br>
+                 <br>
+                main.js page: <br>
+                 <br>
+                const textButton = document.getElementById('number'); <br>
+                const apiButton = document.getElementById('chuck'); <br>
+                const outputDiv = document.getElementById('output'); <br>
+                 <br>
+                const textURL = 'http://numbersapi.com/random'; <br>
+                const apiURL = 'https://api.chucknorris.io/jokes/random'; <br>
+                 <br>
+                //promise that resolves to a string <br>
+                textButton.addEventListener('click', () => { <br>
+                fetch(textURL) <br>
+                <span class="tab"></span>.then( response => { <br>
+                <span class="tab"></span>outputDiv.innerHTML = 'Waiting for response...'; <br>
+                <span class="tab"></span>if(response.ok) { <br>
+                <span class="tab"></span>return response; <br>
+                <span class="tab"></span>} <br>
+                <span class="tab"></span>throw Error(response.statusText); <br>
+                <span class="tab"></span>}) <br>
+                <span class="tab"></span>.then( response => response.text() ) <br>
+                <span class="tab"></span>.then( text => outputDiv.innerText = text ) <br>
+                <span class="tab"></span>.catch( error => console.log('There was an error:', <br>
+                <span class="tab"></span>➥ error)) <br>
+                <span class="tab"></span>},false); <br>
+                 <br>
         </p>
     <h3>V. Sending data with Ajax</h3>
         <p>
-            todo.html page:
-
-            <!doctype html>
-            <html lang='en'>
-            <head>
-            <meta charset='utf-8'>
-            <title>To Do List</title>
-            </head>
-            <body>
-            <form id='todo'
-            ➥ action='https://jsonplaceholder.typicode.com/todos'
-            ➥ method='POST'>
-            <input type='text' name='task' placeholder='Add Task'
-            ➥ autofocus required>
-            <button type='submit'>Add Task</button>
-            </form>
-            <script src='main.js'></script>
-            </body>
-            </html>
-
-            const form = document.forms['todo'];
-            form.addEventListener('submit', addTask, false);
-            function addTask(event) {
-            event.preventDefault();
-            const number = form.task.value;
-            const task = {
-            userId: 1,
-            title: form.task.value,
-            completed: false
-            }
-            const data = JSON.stringify(task);
-            const url = 'https://jsonplaceholder.typicode.com/todos';
-            const headers = new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            });
-            const request = new Request(url,
-            {
-            method: 'POST',
-            header: headers,
-            body: data
-            }
-            )
-            fetch(request)
-            .then( response => response.json() )
-            .then( task => console.log(`Task saved with an id of
-            ➥ ${task.id}`) )
-            .catch( error => console.log('There was an error:',
-            ➥ error))
-            }
-
-            << Task saved with an id of 201
-
-            more general request object:
-
-            const request = new Request(form.action,
-            {
-            method: form.method,
-            header: headers,
-            body: data
-            }
-            )
-
+             <br>
+            todo.html page: <br>
+             <br>
+            &lt;!doctype html&gt; <br>
+            &lt;html lang='en'&gt; <br>
+            &lt;head&gt; <br>
+            <span class="tab"></span>&lt;meta charset='utf-8'&gt; <br>
+            <span class="tab"></span>&lt;title&gt;To Do List&lt;/title&gt; <br>
+            &lt;/head&gt; <br>
+            &lt;body&gt; <br>
+            <span class="tab"></span>&lt;form id='todo' <br>
+            <span class="tab"></span>➥ action='https://jsonplaceholder.typicode.com/todos' <br>
+            <span class="tab"></span>➥ method='POST'&gt; <br>
+            <span class="tab"></span>&lt;input type='text' name='task' <br> placeholder='Add Task' <br>
+            <span class="tab"></span>➥ autofocus required&gt; <br>
+            <span class="tab"></span>&lt;button type='submit'&gt;Add Task&lt;/button&gt; <br>
+            <span class="tab"></span>&lt;/form&gt; <br>
+            <span class="tab"></span>&lt;script src='main.js'&gt;&lt;/script&gt; <br>
+            &lt;/body&gt; <br>
+            &lt;/html&gt; <br>
+             <br>
+            const form = document.forms['todo']; <br>
+            form.addEventListener('submit', addTask, false); <br>
+            function addTask(event) { <br>
+            event.preventDefault(); <br>
+            const number = form.task.value; <br>
+            const task = { <br>
+            <span class="tab"></span>userId: 1, <br>
+            <span class="tab"></span>title: form.task.value, <br>
+            <span class="tab"></span>completed: false <br>
+            } <br>
+             <br>
+            const data = JSON.stringify(task); <br>
+            const url = 'https://jsonplaceholder.typicode.com/todos'; <br>
+            const headers = new Headers({ <br>
+            <span class="tab"></span>'Accept': 'application/json', <br>
+            <span class="tab"></span>'Content-Type': 'application/json'  <br>
+            }); <br>
+            const request = new Request(url, <br>
+            { <br>
+            <span class="tab"></span>method: 'POST', <br>
+            <span class="tab"></span>header: headers, <br>
+            <span class="tab"></span>body: data <br>
+            } <br>
+            ) <br>
+             <br>
+            fetch(request) <br>
+            <span class="tab"></span>then( response => response.json() ) <br>
+            <span class="tab"></span>.then( task => console.log(`Task saved with an id of <br>
+            <span class="tab"></span>➥ ${task.id}`) ) <br>
+            <span class="tab"></span>.catch( error => console.log('There was an error:', <br>
+            <span class="tab"></span>➥ error)) <br>
+            } <br>
+             <br>
+            << Task saved with an id of 201 <br>
+             <br>
+            more general request object: <br>
+             <br>
+            const request = new Request(form.action, <br>
+            { <br>
+                <span class="tab"></span>method: form.method, <br>
+                <span class="tab"></span>header: headers, <br>
+                <span class="tab"></span>body: data <br>
+            } <br>
+            ) <br>
+             <br>
         </p>
     <h3>VI. Form data Interface</h3>
         <p>
-            create form data instance:
-
-            const data = new FormData();
-
-            code for main.js:
-
-            const form = document.forms['todo'];
-            form.addEventListener('submit', addTask, false);
-            function addTask(event) {
-            event.preventDefault();
-            const task = new FormData(form);
-            const url =
-            ➥ `http://echo.jsontest.com/id/1/title/${form.task.value}`;
-            const headers = new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            });
-            const request = new Request(url,
-            {
-            method: 'POST',
-            mode: 'cors',
-            header: headers,
-            body: JSON.stringify(task)
-            }
-            )
-
-            fetch(request)
-            .then( response => response.json() )
-            .then( data => console.log(`${data.title} saved with an
-            ➥ id of ${data.id}`) )
-            .catch( error => console.log('There was an error:',
-            ➥ error))
-            }
-
-            add data using key-value pairs:
-            data = new FormData(); // no form provided as an argument
-            ➥ creates an empty form data instance
-            data.append('height', 75);
+             <br>
+            create form data instance: <br>
+             <br>
+            const data = new FormData(); <br>
+             <br>
+            code for main.js: <br>
+             <br>
+            const form = document.forms['todo']; <br>
+            form.addEventListener('submit', addTask, false); <br>
+            function addTask(event) { <br>
+            <span class="tab"></span>event.preventDefault(); <br>
+            <span class="tab"></span>const task = new FormData(form); <br>
+            <span class="tab"></span>const url = <br>
+            <span class="tab"></span>➥ `http://echo.jsontest.com/id/1/title/${form.task.value}`; <br>
+            <span class="tab"></span>const headers = new Headers({ <br>
+            <span class="tab"></span><span class="tab"></span>'Accept': 'application/json', <br>
+            <span class="tab"></span><span class="tab"></span>'Content-Type': 'application/json' <br>
+            }); <br>
+            const request = new Request(url, <br>
+            { <br>
+            <span class="tab"></span>method: 'POST', <br>
+            <span class="tab"></span>mode: 'cors', <br>
+            <span class="tab"></span>header: headers, <br>
+            <span class="tab"></span>body: JSON.stringify(task) <br>
+            } <br>
+            ) <br>
+             <br>
+            fetch(request) <br>
+            <span class="tab"></span>.then( response => response.json() ) <br>
+            <span class="tab"></span>.then( data => console.log(`${data.title} saved with an <br>
+            <span class="tab"></span>➥ id of ${data.id}`) ) <br>
+            <span class="tab"></span>.catch( error => console.log('There was an error:', <br>
+            <span class="tab"></span>➥ error)) <br>
+             <br>
+             <br>
+            add data using key-value pairs: <br>
+            data = new FormData(); // no form provided as an argument <br>
+            ➥ creates an empty form data instance <br>
+            data.append('height', 75); <br>
         </p>
 </body>
 </html>

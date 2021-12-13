@@ -4,46 +4,426 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebPortfolio</title>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
     <h1>Web Portfolio</h1>
     <h2>Week 09 Notes</h2>
-    <h3></h3>
+        <p>Nov 13, 2021</p>
+    <br>
+    <h3>TRANSFORMS & TRANSITIONS (Ch 9)</h3>
+    <h3>Global object -</h3>
         <p>
-
+            any variables created in a global scope <br>
+            become part of this object and any functions are methods <br>
+            of this, due to every JS environment having a global object <br>
         </p>
-    <h3></h3>
+    <h3>I. Browser Object Model</h3>
         <p>
-
+            a colletion of properties and methods that contain information about the browser  <br>and the computer screen (dimensions, pages viewed in the past). It's used for pop-ups <br>
+             <br>
+            BOM only makes sense in a browser environment; Node.js doesn't have a window object it instead has a global object. <br>
+             <br>
+            // from withing the global scope <br>
+            const global = this; <br>
         </p>
-    <h3></h3>
         <p>
-
+            <b>A. Going Global</b> <br>
+             <br>
+            Global variables are variables created without using const, let, or var; they are <br> properties of the global object (in browser it; is the window object). The window  <br> object should only be referenced directly to check the existence or creation of a <br> global variable. <br>
+             <br>
+            x = 6; // global variable created <br>
+            << 6 <br>
+            window.x // same variable can be accessed as a property of <br>
+            the window object <br>
+            << 6 <br>
+            // both variables are exactly the same <br>
+            window.x === x; <br>
+            << true <br>
         </p>
-    <h3></h3>
         <p>
-
+            <b>B. Dialogs</b> <br>
+             <br>
+            Three main functions for producing dialogs within a browser: alert(), confirm(), and prompt().  <br>These methods will stop the programs execution or processing until the user clicks. <br>
+             <br>
+            window.alert('Hello'); <br>
+            << undefined <br>
+             <br>
+            // displays option of OK or Cancel <br>
+            window.confirm('Do you wish to continue?'); <br>
+            << undefined <br>
+             <br>
+            window.prompt('Please enter your name:'); <br>
         </p>
-    <h3></h3>
+    <h3>II. Finding out browser information</h3>
         <p>
-
+            <b>A. Which Browser?</b> <br>
+            The window object's navigator property is linked to the Navigator object, which <br>
+            contains info about the browser. <br>
+             <br>
+            window.navigator.userAgent <br>
+            << "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) <br>
+            AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 <br>
+            Safari/602.4.8" <br>
         </p>
-    <h3></h3>
         <p>
+            <b>B. Location on the Web (URL)</b> <br>
+             <br>
+            //href returns a string of the URL <br>
+            window.location.href <br>
+            << "https://www.sitepoint.com/premium/books/ <br>
+            javascript-novice-to-ninja" <br>
 
+            There are other properties as well: protocol, host, hostname, port, pathname, search, <br>
+            hash, origin. The methods of window.location: reload(), assign(), replace(), toString(). <br>
+             <br>
+             <br>
+            window.location.protocol or window.location.assign('https://www.sitepoint.com/') <br>
+             <br>
         </p>
-    <h3></h3>
+    <h3>III. Browser history</h3>
         <p>
-
+            The window.history property can access any pages visisted during the current browsing <br>
+            session. Not the same as HTML5 History API <br>
+             <br>
+            window.history.go(1); // goes forward 1 page <br>
+            window.history.go(0); // reloads the current page <br>
+            window.history.go(-1); // goes back 1 page <br>
+             <br>
         </p>
-    <h3></h3>
+    <h3>IV. Controlling windows</h3>
         <p>
-
+             <br>
+            window methods: open(), close(), moveTo(x, y), resizeTo(width, height) <br>
+             <br>
+            window.open() opens a new browsing window. Parameters: URL (string), window title (string), <br>
+            list of attributes (list) <br>
+             <br>
+            const popup = window.open('https://sitepoint.com',' <br>
+            SitePoint','width=400,height=400,resizable=yes'); <br>
+             <br>
         </p>
-    <h3></h3>
+    <h3>V. Screen Info</h3>
         <p>
-
+            The window.screen object has info about the browser screen. <br>
+            On mobile there's also methods to turn off the device's screen, detect orientation changes, <br>
+            or lock in landscape or portrait. <br>
+             <br>
+            window.screen.availWidth <br>
+            << 1280 <br>
+            window.screen.availHeight <br>
+            << 995 <br>
+             <br>
+        </p>
+    <h3>VI. The Document Object</h3>
+        <p>
+            This object has methods that deal with the page that has been loaded into the window. <br>
+            Different options available for setup. However, it is heaily discouraged because it <br>
+            decentralizes the Javascript throughout the document. <br>
+             <br>
+            document.write('Hello, world!'); <br>
+             <br>
+            document.write('&lt;h1&gt;Hello, world!&lt;/h1&gt;'); <br>
+             <br>
+            &lt;h1&gt; <br>
+            &lt;script&gt;document.write("Hello, world!") <br>
+            &lt;/script&gt; <br>
+            &lt;/h1&gt; <br>
+             <br>
+            </p>
+    <h3>VII. Cookies</h3>
+        <p>
+            Cookies were invented tos resolve HTTP being stateless protocol (not remembering past  <br>
+            visits). Cookies store information that can be retrieved between requessts. The biggest <br>
+            limiter is that cookies belong to their specific domain (website); Amazon's cookies are <br>
+            different than Microsoft's cookies. <br>
+        </p>
+        <p>
+            <b>A. Creating Cookies</b> <br>
+             <br>
+            document.cookie = 'name=Superman'; <br>
+            << "name=Superman" <br>
+             <br>
+            document.cookie = 'hero=true'; <br>
+            << "hero=true" <br>
+            document.cookie = 'city=Metropolis'; <br>
+            << "city=Metropolis" <br>
+             <br>
+        </p>
+        <p>
+            <b>B. Reading Cookie values</b> <br>
+             <br>
+              const cookies = document.cookie.split("; "); <br>
+            for (crumb of cookies){ <br>
+            const [key,value] = crumb.split("="); <br>
+            console.log(`The value of ${key} is ${value}`); <br>
+            } <br>
+            << The value of name is Superman <br>
+            The value of hero is true <br>
+            The value of city is Metropolis <br>
+             <br>
+        </p>
+        <p>
+            <b>C. Path and Domain of Cookies</b> <br>
+             <br>
+            Cookies can only be read by pages within the same directory and domain, due to security
+            reasons. <br> However, the path can be changed to allow it to be read by any page in the root. <br>
+             <br>
+            document.cookie = 'name=Batman; path=/' <br>
+             <br>
+            document.cookie = 'name=Batman; <br> domain=sitepoint.com'; <br>
+             <br>
+        </p>
+        <p>
+            <b>D. Secure Cookies:</b> <br>
+            ensure tranmistion over only secure networks (HTTPs). <br>
+             <br>
+            document.cookie = 'name=Batman; secure'; <br>
+        </p>
+        <p>
+            <b>E. Deleting Cookies</b> <br>
+             <br>
+            document.cookie = 'name=Superman; expires=Tues, 01 Jan 1985 00:00:01 GMT'; <br>
+             <br>
+        </p>
+    <h3>VI. Timing functions</h3>
+        <p>
+            There are useful methods provided by the window object for scheduling the execution <br>
+            of a function once or repeatedly at regular intervals. <br>
+             <br>
+            setTimeout() - 1st param function callback, 2nd param miliseconds <br>
+             <br>
+            setInterval() - 1st param function callback (the function that it'll repeatedly <br>
+            invoke), 2nd param miliseconds <br>
+             <br>
+            window.setTimeout( () => alert("Time's Up!"), 3000); <br>
+            << 5 <br>
+             <br>
+            function chant(){ console.log('Beetlejuice'); } <br>
+             <br>
+            const summon = window.setInterval(chant,1000); <br>
+            << 6 <br>
+        </p>
+    <h3>ANIMATION Example</h3>
+        <p>
+             <br>
+            index.html code: <br>
+             <br>
+            &lt;!doctype html&gt; <br>
+            &lt;html lang='en'&gt; <br>
+            &lt;head&gt; <br>
+                <span class="tab"></span>&lt;meta charset='utf-8'&gt; <br>
+                <span class="tab"></span>&lt;title&gt;Animation Example&lt;/title&gt; <br>
+                <span class="tab"></span>&lt;link rel='stylesheet' href='styles.css'&gt; <br>
+            &lt;/head&gt; <br>
+            &lt;body&gt; <br>
+                <span class="tab"></span>&lt;div id='square'&gt;&lt;/div&gt; <br>
+                <span class="tab"></span>&lt;script src='main.js'&gt;&lt;/script&gt; <br>
+            &lt;/body&gt; <br>
+            &lt;/html&gt; <br>
+             <br>
+            styles.css code: <br>
+             <br>
+            #square { <br>
+            <span class="tab"></span>margin: 100px; <br>
+            <span class="tab"></span>width: 100px; <br>
+            <span class="tab"></span>height: 100px; <br>
+            <span class="tab"></span>background: #d16; <br>
+            } <br>
+             <br>
+        </p>
+        <p>
+            main.js code: <br>
+             <br>
+            const squareElement = document.getElementById('square'); <br>
+            let angle = 0; <br>
+            function rotate() { <br>
+            <span class="tab"></span>angle = (angle + 2)%360; <br>
+            <span class="tab"></span>squareElement.style.transform = `rotate(${angle}deg)` <br>
+            <span class="tab"></span>window.requestAnimationFrame(rotate); <br>
+            } <br>
+            const id = requestAnimationFrame(rotate); <br>
+             <br>
+        </p>
+    <h3>HTML5 APIs (Ch 14)</h3> <br>
+        <p>
+            HTML5 for HTML (akin to ES6 to JavaScript) added a large number of new features to the specif <br>
+            -ication bringing together CSS and JavaScript (related technologies in web development). <br>
+        </p> <br>
+    <h3>I. The development of HTML5 and the JavaScript APIs</h3>
+        <p>
+            HTML modules were made to improve the connection of features. <br>
+            If a problem arises, then a new module can be created to cater <br>
+            the new solution to the code. These modules can be at different <br>
+            levels of complexity or maturity. <br>
+             <br>
+        </p>
+    <h3>II. The data- attribute</h3>
+        <p>
+            The data- attribute embeds data into the web page using custom <br>
+            attributes ignored by the browser. There for JavaScript. <br>
+             <br>
+            data-powers = 'flight superSpeed' <br>
+            data-rating = '5' <br>
+            data-dropdown <br>
+            data-user = 'DAZ' <br>
+            data-max-length = '32' <br>
+             <br>
+        </p> <br>
+    <h3>III. HTML5 APIs ― local storage, geolocation, web workers, and multimedia</h3>
+        <p>
+             <br>
+            <b>A. local storage</b> <br>
+            The Web Storage API provides a key-value store on the client’s computer that is similar  <br>
+            to using cookies but has fewer restrictions, more storage capacity & easier to use. <br>
+             <br>
+        </p>
+        <p>
+             <br>
+            <b>B. geolocation</b> <br>
+            The Geolocation API is used to find the user's exact location. <br>
+             <br>
+            navigator.geolocation.getCurrentPosition(youAreHere); <br>
+             <br>
+            function youAreHere(position) { <br>
+            <span class="tab"></span>console.log(`Latitude: ${position.coords.latitude}, <br>
+                <span class="tab"></span>Longitude: ${position.coords.longitude}`); <br>
+            } <br>
+             <br>
+            other properties of position: <br>
+            speed, altitude, heading, timestamp, watchPosition() <br>
+             <br>
+            const id = navigator.geolocation.watchPosition(youAreHere); <br>
+             <br>
+            navigator.geolocation.clearWatch(id); <br>
+             <br>
+        </p>
+        <p>
+             <br>
+            <b>C. web workers</b>
+            Though JavaScript is single-threaded, only one process can be <br>
+            run at a time, web workers allow processes to be run in the background. <br>
+             <br>
+            //Worker constructor code <br>
+            const worker = new Worker('task.js'); <br>
+             <br>
+            worker.postMessage('Hello'); <br>
+             <br>
+            self.postMessage('Finished'); <br>
+             <br>
+            worker.addEventListener('message', (event) => { <br>
+            console.log(event.data); <br>
+            }, false); <br>
+             <br>
+        </p>
+        <p>
+             <br>
+            <b>D. websockets</b>
+             <br>
+            Despite HTTP being the main form of web communication, but there is one main problem <br>
+            with this: you only get a response when a request is sent. But sometimes this is out  <br>
+            of sync, leading to long wait times. Solved partially by Ajax and the polling function; <br>
+            request periodically sent to check if there had been a response. <br>
+             <br>
+            Websocket - a new protocol that allows two-way communication with a server – also known  <br>
+            as push messaging. This means that a connection is kept open and responses are ‘pushed’  <br>
+            to the client as soon as they are received <br>
+             <br>
+        </p>
+        <p>
+            <b>WEBSOCKET EXAMPLE</b>
+             <br>
+            websocket.html code: <br>
+             <br>
+            &lt;!doctype html&gt; <br>
+            &lt;html lang='en'&gt; <br>
+            &lt;head&gt; <br>
+                <span class="tab"></span>&lt;meta charset='utf-8'&gt; <br>
+                <span class="tab"></span>&lt;title&gt;Websocket Example&lt;/title&gt; <br>
+            &lt;/head&gt; <br>
+            &lt;body&gt; <br>
+                <span class="tab"></span>&lt;form&gt; <br>
+                <span class="tab"></span><span class="tab"></span>&lt;label for='message'&gt;Enter a Message:&lt;/label&gt; <br>
+                <span class="tab"></span><span class="tab"></span>&lt;input type='text' name='message'&gt; <br>
+                <span class="tab"></span><span class="tab"></span>&lt;button type='submit'&gt;Submit&lt;/button&gt; <br>
+                <span class="tab"></span>&lt;/form&gt; <br>
+                <span class="tab"></span>&lt;div id='output'&gt;&lt;/div&gt; <br>
+                <span class="tab"></span>&lt;script src='main.js'&gt;&lt;/script&gt; <br>
+            &lt;/body&gt; <br>
+            &lt;/html&gt; <br>
+             <br>
+            main.js: <br>
+             <br>
+            const URL = 'wss://echo.websocket.org/'; <br>
+            const outputDiv = document.getElementById  ('output'); <br>
+            const form = document.forms[0]; <br>
+            const connection = new WebSocket(URL); <br>
+             <br>
+            connection.addEventListener('open', () => {
+            output('CONNECTED'); <br>
+            }, false); <br>
+             <br>
+            function output(message) { <br>
+            <span class="tab"></span>const para = document.createElement('p'); <br>
+            <span class="tab"></span>para.innerHTML = message; <br>
+            <span class="tab"></span>outputDiv.appendChild(para); <br>
+            } <br>
+             <br>
+            form.addEventListener('submit', message, false); <br>
+             <br>
+            function message(event) { <br>
+            <span class="tab"></span>event.preventDefault(); <br>
+            <span class="tab"></span>const text = form.message.value; <br>
+            <span class="tab"></span>output(`SENT: ${text}`); <br>
+            <span class="tab"></span>connection.send(text); <br>
+            } <br>
+             <br>
+            //an event handler to deal with the response <br>
+            connection.addEventListener('message', (event) => { <br>
+            output(`RESPONSE: ${event.data}`); <br>
+            }, false); <br>
+             <br>
+        </p>
+    <h3>IV. Drawing shapes with canvas</h3>
+        <p>
+            The canvas element was introduced to allow graphics to be drawn on to the webpage in <br>
+            real-time by means of JavaScript. There are two contexts: one for drawing 2-D (basic) <br>
+            and another for rendering 3-D (WebGL) <br>
+             <br>
+            const canvasElement = document.getElementById('canvas'); <br>
+            const context = canvasElement.getContext('2d'); <br>
+             <br>
+            context.fillStyle = "#0000cc"; // a blue fill color <br>
+            context.strokeStyle = "#ccc"; // a gray stroke color <br>
+             <br>
+            context.lineWidth = 4; <br>
+             <br>
+            context.fillRect(10,10,100,50); <br>
+             <br>
+            //draw red-T shape <br>
+            context.beginPath(); <br>
+            context.moveTo(130, 50); <br>
+            context.lineTo(180, 50); <br>
+            context.moveTo(155, 50); <br>
+            context.lineTo(155, 90); <br>
+            context.strokeStyle = '#c00'; <br>
+            context.lineWidth = 15; <br>
+            context.stroke(); <br>
+             <br>
+        </p>
+    <h3>V. Shims and polyfills ―</h3>
+        <p>
+            how to make the most of HTML5 APIs. New APIs are constantly being introduced <br>
+            and existing APIs often change, so there's no guarantee that the user's browser <br>
+            can run an API properly (despite browser updates). Shims and polyfills are <br>
+            there to fill in necessary code no provided natively by the user's browser. <br>
+             <br>
+            shim - adds some missing functionality to a browser but method <br>
+            implementation may be slightly different <br>
+             <br>
+            polyfill - a shim with the same method implmenentation that <br>
+            would be found if the API was supported natively <br>
+             <br>
         </p>
 </body>
 </html>
