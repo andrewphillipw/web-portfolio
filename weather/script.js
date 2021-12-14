@@ -10,12 +10,14 @@ const wrapper = document.querySelector('.wrapper'),
 
 let api;
 
+//event listener for the city text field
 inputField.addEventListener('keyup', e => {
     if (e.key == 'Enter' && inputField.value != '') {
         requestApi(inputField.value);
     }
 });
 
+//event listener for find by location option
 locationBtn.addEventListener('click', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -40,6 +42,7 @@ function onError(error) {
     infoTxt.classList.add('error');
 }
 
+//function using AJAX to return JSON data
 function fetchData() {
     infoTxt.innerText = 'Getting weather details...';
     infoTxt.classList.add('pending');
